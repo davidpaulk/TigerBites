@@ -4,4 +4,3 @@ Our software product will to notify users via phone and/or email when a “favor
 One of these interfaces will present a list of the residential colleges.  By clicking on a residential college, a user will expand the breakfast, lunch, and dinner dining items for the current day.
 Another interface will present a search bar and several search specifications so that users can search for and select their favorite dining item.
 In addition to modifying favorited dining items, a user will be able to submit suggestion letters to Princeton Dining Services.  A user will be able to access the suggestion box by clicking on a link to it from the main page.
-Lisa says hi!
