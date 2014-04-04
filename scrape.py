@@ -1,6 +1,6 @@
 import urllib
 from bs4 import BeautifulSoup
-import os, sys
+import os, sys, json
 from datetime import date
 
 # function that returns menu url based on dining hall input
@@ -19,7 +19,7 @@ def getMealUrl(str):
    return url;
 
 # parses query and gets desired meal and dhall
-def getMeals(str):
+def getMeals(str, today):
     # Get URL
     url = getMealUrl(str)
     
@@ -34,121 +34,66 @@ def getMeals(str):
     foodlist = soup.find_all('div') 
     length = len(foodlist)
 
-    #create meal dictionary
-    meals = dict()
+    first = False
+    if str == "ROCKY":
+      first = True
 
-    # create dhall name entry
-    meals["dhall"] = str
+    outfile = open(today, 'a')
+
 
     # go through and find all meals, and all foods in the meals
     for meal in soup.find_all('meal'):
+        if first:
+          outfile.write('[\n')
+          first = False
+        else:
+          outfile.write(',\n')
+        meals = dict()
+        meals["dhall"] = str
         mealName =  meal['name'].upper()
-        mealMenuList = ""
+        meals["meal"] = mealName
+        mealMenuList = list()
         for entree in meal.find_all('entree'):
           entreeType = entree['type'].upper()
           entreeType = entreeType.replace("-- ","")
           entreeType = entreeType.replace(" --","")
+          dish = dict()
           for food in entree.find_all('name'):
-            mealMenuList+=entreeType+", "
-            mealMenuList+=food.get_text()+", "
+            dish["type"] = entreeType
+
+            dish["name"] = food.get_text()
+
           for isVegan in entree.find_all('vegan'):
-            mealMenuList+=isVegan.get_text()+", "
+            dish["vegan"] = isVegan.get_text()
+
           for isVegetarian in entree.find_all('vegetarian'):
-            mealMenuList+=isVegetarian.get_text()+", "
+            dish["vegetarian"] = isVegetarian.get_text()
+
           for isPork in entree.find_all('pork'):
-            mealMenuList+=isPork.get_text()+", "
+            dish["pork"] = isPork.get_text()
+
           for hasNuts in entree.find_all('nuts'):
-            mealMenuList+=hasNuts.get_text()+ "\n"
-        meals[mealName] = mealMenuList
+            dish["nuts"] = hasNuts.get_text()
+            mealMenuList.append(dish)
+
+        meals["menus"] = mealMenuList
+        json.dump(meals, outfile)
 
     return meals
 
-
-def parse_query(query):
-    dhall = ""
-    meal = ""
-    laundry = ""
-
-    query = query.lower()
-    
-    #dhall dictionary
-    dhalls   = {
-       "wilson": "WILSON",
-       "butler": "BUTLER",
-       "forbes": "FORBES",
-       "whitman": "WHITMAN",
-       "rocky": "ROMA",
-       "mathey": "ROMA",
-       "gradcollege":"GRADCOLLEGE",
-       "cjl":"CJL"
-       }
-
-    # meal dictionary
-    meals    = {
-       "lunch": "Lunch",
-       "breakfast": "Breakfast",
-       "brunch": "Brunch",
-       "dinner": "Dinner"
-       }
-
-
-    #dhall case
-    for key in dhalls:
-        if key in query:
-            type = "food"
-            dhall = dhalls[key]
-
-             # search for meal
-            for key in meals:
-                 if key in query:
-                     meal = meals[key]
-
-        
-            return [type, dhall, meal]
-         
-
-def getMenu(query):
-
-    
-     
-    # pass dhall to getMeals and get dictionary
-    meals = getMeals(query)
-
-    meal1 = "BREAKFAST"
-    meal2 = "BRUNCH"
-    meal3 = "LUNCH"
-    meal4 = "DINNER"
-    response = ""
-    # print menu
-    if (meals.has_key(meal1)):
-      response = (meals["dhall"] + " " + meal1 + "\n")
-      
-      response+=meals[meal1]
-    if (meals.has_key(meal2)):
-      response+=(meals["dhall"] + " " + meal2 + "\n")
-      response+=meals[meal2]
-
-    if (meals.has_key(meal3)):
-      response+=(meals["dhall"] + " " + meal3 + "\n")
-      response+=meals[meal3]
-
-    if (meals.has_key(meal4)):
-      response+=(meals["dhall"] + " " + meal4 + "\n")
-      response+=meals[meal4]
-
-
-    
- 
-    return response
    
 def main():
-  print date.today()
-  print getMenu("ROCKY").encode('utf-8')
-  print getMenu("WILSON").encode('utf-8')
-  print getMenu("WHITMAN").encode('utf-8')
-  print getMenu("FORBES").encode('utf-8')
-  print getMenu("CJL").encode('utf-8')
-  print getMenu("GRADCOLLEGE").encode('utf-8')
+  today = str(date.today())
+  today += '.json'
+  with open(today, 'a') as outfile:
+    #outfile.write('[\n')
+    getMeals("ROCKY", today)
+    getMeals("WILSON", today)
+    getMeals("WHITMAN", today)
+    getMeals("FORBES", today)
+    getMeals("CJL", today)
+    getMeals("GRADCOLLEGE", today)
+    outfile.write('\n]\n')
 
 main()
  
