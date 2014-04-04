@@ -2,6 +2,8 @@ import urllib
 from bs4 import BeautifulSoup
 import os, sys, json
 from datetime import date
+from subprocess import call
+import subprocess
 
 # function that returns menu url based on dining hall input
 def getMealUrl(str):   
@@ -83,17 +85,19 @@ def getMeals(str, today):
 
    
 def main():
-  today = str(date.today())
-  today += '.json'
-  with open(today, 'a') as outfile:
-    #outfile.write('[\n')
+  call(["rm", "-f", "today.json"])
+  
+  today = 'today.json'
+  with open(today, 'w') as outfile:
     getMeals("ROCKY", today)
     getMeals("WILSON", today)
     getMeals("WHITMAN", today)
     getMeals("FORBES", today)
     getMeals("CJL", today)
     getMeals("GRADCOLLEGE", today)
-    outfile.write('\n]\n')
+
+  outfile = open(today, 'a') 
+  outfile.write('\n]\n')
 
 main()
  
