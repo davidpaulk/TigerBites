@@ -41,6 +41,7 @@ def getMeals(str, today):
       first = True
 
     outfile = open(today, 'a')
+    meals = dict()
 
 
     # go through and find all meals, and all foods in the meals
@@ -64,6 +65,8 @@ def getMeals(str, today):
             dish["type"] = entreeType
 
             dish["name"] = food.get_text()
+            #check db to see if the food is in it already
+            #if not, add to the db
 
           for isVegan in entree.find_all('vegan'):
             dish["vegan"] = isVegan.get_text()
@@ -98,6 +101,7 @@ def main():
 
   outfile = open(today, 'a') 
   outfile.write('\n]\n')
+
 
 main()
  
