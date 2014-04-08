@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import urllib
 from bs4 import BeautifulSoup
 import os, sys, json
@@ -102,6 +104,6 @@ def main():
   outfile = open(today, 'a') 
   outfile.write('\n]\n')
 
-
+os.chdir("/home/ubuntu/TigerBites/")
 main()
  
