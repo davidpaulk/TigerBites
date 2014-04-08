@@ -5,7 +5,7 @@ import json
 def main():
 
     # connect with the database
-    con = lite.connect('../db.sqlite3')
+    con = lite.connect('db.sqlite3')
 
     # fetch data from the database
     #with con:                                                                                                                                                
@@ -22,17 +22,19 @@ def main():
     file.close()
 
     # attempt at getting ids for today's dining items
-    #with con:
-    #    cur = con.cursor()
-    #    cur.execute("SELECT * FROM menus")
+    with con:
+        #cur = con.cursor()
+        #cur.execute("SELECT * FROM menus")
     #    rows = cur.fetchall()
     #    for row in rows:
     #        for field in row:
     #            print field
-    #        for dhall in today:
-    #            for meal in dhall['menus']:
-    #                for item in meal:
-    #                    blah = 1
+        for dhall in today:
+            for meal in dhall['menus']:
+                for item in meal:
+                    cur = con.cursor()
+                    cur.execute("SELECT id FROM users_item WITH '" + item + "'")
+                    itemID = cur.fetchone()
     # eventually the comparisons will be made with database items instead of dictionary items
     matches = dict()
     favorites = dict()
@@ -53,5 +55,5 @@ def main():
         print ('favorites served today:')
         for j in matches[i]:
             print i
-            # sendEmail({netid : [dining_item, dining_hall, meal_time], ...})
+            # sendEmail({netid : [tuples[dining_item, dining_hall, meal_time]]})
 main()
