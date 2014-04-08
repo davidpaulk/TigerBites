@@ -6,6 +6,7 @@ import os, sys, json
 from datetime import date
 from subprocess import call
 import subprocess
+import sqlite3
 
 # function that returns menu url based on dining hall input
 def getMealUrl(str):   
@@ -67,8 +68,7 @@ def getMeals(str, today):
             dish["type"] = entreeType
 
             dish["name"] = food.get_text()
-            #check db to see if the food is in it already
-            #if not, add to the db
+            
 
           for isVegan in entree.find_all('vegan'):
             dish["vegan"] = isVegan.get_text()
@@ -81,7 +81,13 @@ def getMeals(str, today):
 
           for hasNuts in entree.find_all('nuts'):
             dish["nuts"] = hasNuts.get_text()
-            mealMenuList.append(dish)
+
+          c.execute(" INSERT or REPLACE INTO menus(type, name, vegan, vegetarian, pork, nuts) VALUES (?, ?, ?, ?, ?, ?) ", (dish["type"], dish["name"],dish["vegan"],dish["vegetarian"],dish["pork"],dish["nuts"]))
+          mealMenuList.append(dish)
+          
+#          c.executescript(""" INSERT INTO menus(type, name, vegan, vegetarian, pork, nuts) SELECT dish["type"], dish["name"],dish["vegan"],dish["vegetarian"],dish["pork"],dish["nuts"] WHERE NOT EXISTS (SELECT 1 FROM menus WHERE name = dish["name"]); """)
+
+        
 
         meals["menus"] = mealMenuList
         json.dump(meals, outfile)
@@ -105,5 +111,12 @@ def main():
   outfile.write('\n]\n')
 
 os.chdir("/home/ubuntu/TigerBites/")
+conn = sqlite3.connect('db.sqlite3')
+os.chdir("/home/ubuntu/TigerBites/dining")
+#conn = sqlite3.connect('db.sqlite3')
+c = conn.cursor()
+#for row in c.execute('SELECT * FROM menus'):
+#   print row
 main()
- 
+conn.commit()
+conn.close() 
