@@ -1,7 +1,19 @@
+import sqlite3 as lite
 import sys
 import json
 
 def main():
+
+    # connect with the database
+    con = lite.connect('db.sqlite3')
+
+    # fetch data from the database
+    with con:                                                                                                                                                
+        cur = con.cursor()
+        cur.execute("SELECT * FROM menus")
+        rows = cur.fetchall()
+        for row in rows:
+            print row
 
     # read and evaluate today.json
     global today
