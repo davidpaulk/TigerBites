@@ -11,11 +11,12 @@ def index(request):
     file.close()
     # pass arguments to template of menu that makes sense. 
     # may likely just be list of menu items as ROMA_LUNCH
-   # items_only = []
-    #for dhall_and_meal in today:
-     #   for item in dhall_and_meal['menus']:
-      #      items_only.append(item[        
-    menus = today
+    items_only = []
+    for dhall_and_meal in today:
+        for item in dhall_and_meal['menus']:
+            items_only.append(item['name'])
+        
+    menus = items_only
     template = loader.get_template('users/index.html')
     context = RequestContext(request, {'menus': menus})
     return HttpResponse(template.render(context))

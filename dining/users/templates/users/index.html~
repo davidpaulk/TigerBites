@@ -64,7 +64,7 @@ dinner.style.display = "block";
     {% for dhall_item in menus %}                                                 
     {% if dhall_item.meal == "LUNCH" %}                                           
 {% for item in dhall_item.menus %} 
-    {{ item.name }}<br>
+    {{ item }}<br>
     {% endfor %}
     {% endif %}
     {% endfor %}
