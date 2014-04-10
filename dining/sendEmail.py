@@ -10,6 +10,7 @@ def sendEmail(favorites):
     sg = sendgrid.SendGridClient('tigerbites', 'princetoncos333')
 
     for netid in favorites:
+       # print netid
         message = sendgrid.Mail()
         useremail = '<'+netid+'@princeton.edu>'
         message.add_to(useremail)
@@ -19,10 +20,13 @@ def sendEmail(favorites):
         body = 'Hello, \n The following items are available today!\n'
  
         ## iterate through the list of favorites available today
+        #print favorites[netid]
         for tup in favorites[netid]:
             (item, dininghall, when) = tup
             body += item +" is available at "+dininghall+" for "+when+". \n"
-
+        #    print item
+        #    print dininghall
+        #    print when
 
         body += '\n\tBest,\n\tTiger Bites'
 

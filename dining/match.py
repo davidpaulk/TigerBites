@@ -2,44 +2,46 @@ import sqlite3 as lite
 from sendEmail import sendEmail
 import sys
 import json
-def main():
+def match():
     # declare local variables
     matches = dict()
-    #favorites = dict()
+    favorites = dict()
 
     # connect with the database
-    #con = lite.connect('db.sqlite3')
+    con = lite.connect('db.sqlite3')
 
     # read and evaluate today.json
-    #global today
-    #file = open('today.json')
-    #today = json.load(file)
-    #file.close()
+    global today
+    file = open('today.json')
+    today = json.load(file)
+    file.close()
 
     # fetch IDs for dining items corresponding with today's menu items
-    #with con:
-	#for dhall in today:
-         #   for meal in dhall['menus']:
-          #      for item in meal:
-           #         cur = con.cursor()
-            #        cur.execute("SELECT id FROM users_item WITH '" + item + "'")
-             #       item_ID = cur.fetchone()
-		    
-		    # fetch dining items corresponding with IDs previously fetched
-	#	    cur.execute("SELECT netid_id FROM users_netid_favorites WITH '" + item_ID + "'")
-	#	    netID_ID = cur.fetchone() # fetch all?
-	#	    cur.execute("SELECT netid FROM users_netid WITH '" + netID_ID + "'")
-	#	    netID = cur.fetchone()		    
+    with con:
+	for dhall in today:
+            for meals in dhall['menus']:
+		    item = meals['name']
+                    cur = con.cursor()
 
-		    # add item from today's menu to list corresponding with user if user favorited the item
-	#	    if netID in matches:
-         #               matches[netID].append((item, dhall, meal))
-          #          else:		    
-	#		matches[netID] = [(item, dhall, meal)]			
+		    # fetch ID corresponding with the dining item
+                    cur.execute("SELECT id FROM users_item WHERE name = '"+item+"'")
+                    item_ID = cur.fetchone()
+		    
+		    # fetch netID IDs corresponding with IDs previously fetched
+		    cur.execute("SELECT netid_id FROM users_netid_favorites WHERE item_id = '"+ str(item_ID[0])+ "'")
+		    #netID_ID = cur.fetchone() # fetch all?
+                    for netID_ID in cur.fetchall():
+
+                        # fetch the netid corresponding with the netID ID
+                        cur.execute("SELECT netid FROM users_netid WHERE id = '" + str(netID_ID[0])+"'")
+                        netID = cur.fetchone()[0]		    
+
+                        # add item from today's menu to list corresponding with user if user favorited the item
+                        if netID in matches:
+			    tup = (item, dhall['dhall'], dhall['meal'])
+                            matches[netID].append(tup)
+                        else:		    
+                            matches[netID] = [(item, dhall['dhall'], dhall['meal'])]			
 	
     # eventually the comparisons will be made with database items instead of dictionary items
-    matches["dpaulk"] = [("Cheese Pizza", "FORBES", "DINNER")]
-    matches["dpaulk"] = [("Mushroom Pizza", "CJL", "LUNCH")]
-    matches["lktwo"] = [("Mushroom Pizza", "CJL", "LUNCH")]
     sendEmail(matches)
-main()

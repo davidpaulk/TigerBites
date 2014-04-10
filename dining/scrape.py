@@ -58,7 +58,6 @@ def getMeals(str, today):
         meals = dict()
         meals["dhall"] = str
         mealName =  meal['name'].upper()
-        mealName = mealName.replace("'","")
         meals["meal"] = mealName
         mealMenuList = list()
         for entree in meal.find_all('entree'):
@@ -69,7 +68,7 @@ def getMeals(str, today):
           for food in entree.find_all('name'):
             dish["type"] = entreeType
 
-            dish["name"] = food.get_text()
+            dish["name"] = food.get_text().replace("'","")
             
 
           for isVegan in entree.find_all('vegan'):
