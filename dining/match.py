@@ -2,6 +2,7 @@ import sqlite3 as lite
 from sendEmail import sendEmail
 import sys
 import json
+import Levenshtein
 def match():
     # declare local variables
     matches = dict()
@@ -26,7 +27,32 @@ def match():
 		    # fetch ID corresponding with the dining item
                     cur.execute("SELECT id FROM users_item WHERE name = '"+item+"'")
                     item_ID = cur.fetchone()
-		    
+
+                    cur.execute("SELECT * FROM users_item")
+                    similarItems = []
+                    for food in cur.fetchall():
+                        similarity = Levenshtein.ratio(food[6], item)
+                        if (len(food[6]) > len(item)):
+                            ratio = float(len(item))/float(len(food[6]))
+                        else:
+                            ratio = float(len(food[6]))/float(len(item))
+                        if (similarity > 0.8) and (ratio < 1.0) and (ratio > 0.5):
+                            #print item + " and " + food[6] + " are similar."
+                            cur.execute("SELECT id FROM users_item WHERE name = '"+food[6]+"'")
+                            similarItem_ID = cur.fetchone()
+                            cur.execute("SELECT netid_id FROM users_netid_favorites WHERE item_id = '"+ str(similarItem_ID[0])+ "'")
+                            for similarNetID_ID in cur.fetchall():
+                                # fetch the netid corresponding with the netID ID                                       
+                                cur.execute("SELECT netid FROM users_netid WHERE id = '" + str(similarNetID_ID[0])+"'")
+                                similarNetID = cur.fetchone()[0]
+                                
+                                # add item from today's menu to list corresponding with user if user favorited the item
+                                if similarNetID in matches:
+                                    similarTup = (item, dhall['dhall'], dhall['meal'], food[6])
+                                    matches[similarNetID].append(similarTup)
+                                else:
+                                    matches[similarNetID] = [(item, dhall['dhall'], dhall['meal'], food[6])]
+                                    
 		    # fetch netID IDs corresponding with IDs previously fetched
 		    cur.execute("SELECT netid_id FROM users_netid_favorites WHERE item_id = '"+ str(item_ID[0])+ "'")
 		    #netID_ID = cur.fetchone() # fetch all?
@@ -38,10 +64,21 @@ def match():
 
                         # add item from today's menu to list corresponding with user if user favorited the item
                         if netID in matches:
-			    tup = (item, dhall['dhall'], dhall['meal'])
-                            matches[netID].append(tup)
-                        else:		    
-                            matches[netID] = [(item, dhall['dhall'], dhall['meal'])]			
+                            somevar = False
+                            for foodtup in matches[netID]:
+                                if (foodtup[0] == item):
+                                    if (foodtup[3] != None):
+                                        matches[netID].remove(foodtup)
+                                        newtup = (item, dhall['dhall'], dhall['meal'], None)
+                                        matches[netID].append(newtup)
+                                        somevar = True
+                                        break
+                            if somevar == False:
+                                tup = (item, dhall['dhall'], dhall['meal'], None)
+                                matches[netID].append(tup)
+                        else:
+                            matches[netID] = [(item, dhall['dhall'], dhall['meal'], None)]			
 	
     # eventually the comparisons will be made with database items instead of dictionary items
     sendEmail(matches)
+    

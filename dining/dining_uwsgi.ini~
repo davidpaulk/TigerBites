@@ -1,0 +1,22 @@
+# dining_uwsgi.ini file
+[uwsgi]
+
+# Django-related settings
+# the base directory (full path)
+chdir           = ~/TigerBites/dining
+# Django's wsgi file
+module          = dining.wsgi
+# the virtualenv (full path)
+#home            = ~/TigerBites/dining
+
+# process-related settings
+# master
+master          = true
+# maximum number of worker processes
+processes       = 10
+# the socket (use the full path to be safe
+socket          = ~/TigerBites/dining.sock
+# ... with appropriate permissions - may be needed
+# chmod-socket    = 664
+# clear environment on exit
+vacuum          = true

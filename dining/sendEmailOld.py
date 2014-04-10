@@ -22,11 +22,8 @@ def sendEmail(favorites):
         ## iterate through the list of favorites available today
         #print favorites[netid]
         for tup in favorites[netid]:
-            (item, dininghall, when, exact) = tup
-            if (exact == None):
-                body += item +" is available at "+dininghall+" for "+when+". \n"
-            else:
-                body += "You like "+exact+" so we thought you might enjoy "+item+" which is available at "+dininghall+" for "+when+". \n"
+            (item, dininghall, when) = tup
+            body += item +" is available at "+dininghall+" for "+when+". \n"
         #    print item
         #    print dininghall
         #    print when
