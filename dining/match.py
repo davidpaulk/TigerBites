@@ -28,9 +28,24 @@ def match():
                     cur.execute("SELECT id FROM users_item WHERE name = '"+item+"'")
                     item_ID = cur.fetchone()
 
+                    cur.execute("SELECT isVegan FROM users_item WHERE name = '"+item+"'")
+                    item_isVegan = cur.fetchone()[0]
+
+                    cur.execute("SELECT isVegetarian FROM users_item WHERE name = '"+item+"'")
+                    item_isVegetarian = cur.fetchone()[0]
+                    
+                    cur.execute("SELECT isPork FROM users_item WHERE name = '"+item+"'")
+                    item_isPork = cur.fetchone()[0]
+
+                    cur.execute("SELECT hasNuts FROM users_item WHERE name = '"+item+"'")
+                    item_hasNuts = cur.fetchone()[0]
+
                     cur.execute("SELECT * FROM users_item")
                     similarItems = []
                     for food in cur.fetchall():
+                        # check to make sure potential similar item has same allergen attributes
+                        if item_isVegan != food[1] or item_isVegetarian != food[2] or item_isPork != food[3] or item_hasNuts != food[4]:
+                            continue
                         similarity = Levenshtein.ratio(food[6], item)
                         if (len(food[6]) > len(item)):
                             ratio = float(len(item))/float(len(food[6]))
