@@ -8,6 +8,7 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^accounts/login/$', 'django_cas.views.login'),
                        url(r'^accounts/logout/$', 'django_cas.views.logout'),
+                       url(r'^favorites/$', 'users.views.favorites'),
 )
     # Examples:
     # url(r'^$', 'dining.views.home', name='home'),

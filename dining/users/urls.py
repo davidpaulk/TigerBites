@@ -4,5 +4,7 @@ from users import views
 
 urlpatterns = patterns('', 
                        url(r'^$', views.index, name = 'index'),
-                       url(r'^/menu/$', views.menu, name = 'menu'),
+                       url(r'^menu/', views.menu, name = 'menu'),
+                       #david experiment
+                       url(r'^favorites/$', views.menu, name = 'favorites'),
                        )

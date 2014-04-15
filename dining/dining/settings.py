@@ -93,3 +93,8 @@ USE_TZ = True
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_ROOT = '/var/www/tigerbites.org/static/'
 STATIC_URL = '/static/'
+
+# david experiment
+TEMPLATE_DIRS = (
+    '~/TigerBites/dining/users/templates',
+)
