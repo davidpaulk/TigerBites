@@ -9,6 +9,8 @@ urlpatterns = patterns('',
                        url(r'^accounts/login/$', 'django_cas.views.login'),
                        url(r'^accounts/logout/$', 'django_cas.views.logout'),
                        url(r'^favorites/$', 'users.views.favorites'),
+                       # david experiment
+                       url(r'^users/', include('users.urls')),
 )
     # Examples:
     # url(r'^$', 'dining.views.home', name='home'),

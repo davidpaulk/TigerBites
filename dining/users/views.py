@@ -7,6 +7,7 @@ import json
 #david experiment
 from django.template.loader import get_template
 from django.template import Context # for inserting data from our view in correct place
+import sqlite3 as lite
 
 def index(request):
     #get today.json from parent directory
@@ -36,6 +37,16 @@ def menu(request):
     
 def favorites(request):
     name = 'Lisa'
+    # connect with the database
+    #con = lite.connect('../../db.sqlite3')
+    
+    # fetch IDs for dining items corresponding with today's menu items
+    #listOfThings = []
+    #with con:
+    #    cur = con.cursor()
+    #    cur.execute("SELECT * FROM users_netid_favorites")
+    #    for thing in cur.fetchall():
+    #        listOfThings.append(thing)
     t = get_template('favorites.html')
-    html = t.render(Context({'name': name}))
+    html = t.render(Context({'name': name})) #'listOfThings': listOfThings}))
     return HttpResponse(html)
