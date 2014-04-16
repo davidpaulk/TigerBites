@@ -1,0 +1,11 @@
+<html>
+<body>
+{% for user_favorites in favorites %}
+<div>
+<p>yoyoyoyoy</p>
+<h2><a href="/favorites/get/{{ user_favorites.id }}/">{{ user_favorites.netid }}</a></h2>
+<p>{{ user_favorites }}</p>
+</div>
+{% endfor %}
+</body>
+</html>

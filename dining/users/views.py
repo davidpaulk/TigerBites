@@ -8,6 +8,9 @@ import json
 from django.template.loader import get_template
 from django.template import Context # for inserting data from our view in correct place
 import sqlite3 as lite
+from django.views.generic.base import TemplateView # a view that knows how to display a template
+from users.models import NetID 
+from django.shortcuts import render_to_response
 
 def index(request):
     #get today.json from parent directory
@@ -36,17 +39,23 @@ def menu(request):
 #    return HttpResponse(html)
     
 def favorites(request):
-    name = 'Lisa'
-    # connect with the database
-    #con = lite.connect('../../db.sqlite3')
-    
-    # fetch IDs for dining items corresponding with today's menu items
-    #listOfThings = []
-    #with con:
-    #    cur = con.cursor()
-    #    cur.execute("SELECT * FROM users_netid_favorites")
-    #    for thing in cur.fetchall():
-    #        listOfThings.append(thing)
-    t = get_template('favorites.html')
-    html = t.render(Context({'name': name})) #'listOfThings': listOfThings}))
-    return HttpResponse(html)
+    #name = 'Lisa and Diogo'
+    #t = get_template('favorites.html')
+    #html = t.render(Context({'name': name})) #'listOfThings': listOfThings}))
+    #return HttpResponse(html)
+    netid = request.user.get_username()
+    template = loader.get_template('users/favorite.html')
+    context = RequestContext(request, {'netid': netid})
+    return render_to_response('favorites.html')
+                              
+#def favorites(request, user_id=2):
+#    return render_to_response('favorite.html',
+#                              {'userFavorites': NetID.objects.get(id=user_id)})
+
+#class FavoritesTemplate(TemplateView):
+ #   template_name = 'favorites_template.html'
+#
+ #   def get_context_data(self, **kwargs):
+  #      context = super(FavoritesTemplate, self).get_context_data(**kwargs)
+   #     context['name'] = 'Lisa and Diogo'
+    #    return context
