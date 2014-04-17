@@ -12,7 +12,7 @@ import sqlite3 as lite
 from django.views.generic.base import TemplateView # a view that knows how to display a template
 from users.models import NetID 
 from django.shortcuts import render_to_response
-
+#from django.config import settings
 
 def load_index_context(request):
     file = open('/home/ubuntu/TigerBites/dining/today.json')
@@ -46,7 +46,8 @@ def favorites(request):
         context = RequestContext(request, {'netid': netid})
         return HttpResponse(template.render(context))
     else:
-        return HttpRequest('accounts/login/')
+        #return HttpRequest(urljoin(settings.CAS_SERVER_URL, 'login'))
+        return HttpResponse('<html>Please <a href="http://tigerbites.org/accounts/login">sign in</a> to a CAS authenticated account before viewing or changing favorite dining items')
         #return HttpResponse('<html>we should redirect people that aren\'t signed in to the cas login')
 
 def search(request):
