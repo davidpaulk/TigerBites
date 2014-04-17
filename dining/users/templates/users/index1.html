@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+<style type="text/css">
+#ToggleTarget {
+display: none;
+}
+#ToggleTarget2 {
+display: none;
+}
+#ToggleTarget3 {
+display: none;
+}
+</style>
+
+<script type="text/javascript">
+function Toggle1() {
+var breakfast = document.getElementById("ToggleTarget");
+if (breakfast.style.display == "block") {
+breakfast.style.display = "none";
+}
+else {
+breakfast.style.display = "block";
+}
+}
+
+function Toggle2() {
+var lunch = document.getElementById("ToggleTarget2");
+if (lunch.style.display == "block") {
+lunch.style.display = "none";
+}
+else {
+lunch.style.display = "block";
+}
+}
+
+function Toggle3() {
+var dinner = document.getElementById("ToggleTarget3");
+if (dinner.style.display == "block") {
+dinner.style.display = "none";
+}
+else {
+dinner.style.display = "block";
+}
+}
+
+
+
+
+</script>
+
+
+
+<style>
+.fit {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+div.loginmodule {
+padding-top:20px; 
+padding-left:20px; 
+padding-right:20px; 
+background:rgba(255,255,255,0.75);
+padding-bottom:180px; 
+background:rgba(255,255,255,0.75); 
+padding-bottom:20px; 
+}
+
+</style>
+
+<meta charset="UTF-8">
+
+
+<title>Tiger Bites</title>
+
+
+  <link rel="stylesheet" href="//cloud.typography.com/610186/691184/css/fonts.css">
+
+  <!--[if !IE]><!-->
+  <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v=2.3">
+  <!--<![endif]-->
+  <!--[if lt IE 9]>
+  <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/css/oldie.css">
+  <![endif]-->
+  <!--[if IE 9]>
+  <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
+  <![endif]-->
+  
+</head>
+
+ 
+
+<body class="home"> 
+  <div class="page-wrap">
+    <header>
+    <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo1.png"></a></center>
+</header>
+
+
+    <nav class="main-nav">
+
+  <a href="/" class="home">
+    <svg viewBox="0 0 100 25" class="shape-tab">
+      <use xlink:href="#shape-tab"></use>
+    </svg>
+    <span>Menus</span>
+  </a>
+  <a href="/dhalls/" class="videos">
+    <svg viewBox="0 0 100 25" class="shape-tab">
+      <use xlink:href="#shape-tab"></use>
+    </svg>
+    <span>Dining halls</span>
+  </a>
+  <a href="/favorites/" class="almanac">
+    <svg viewBox="0 0 100 25" class="shape-tab">
+      <use xlink:href="#shape-tab"></use>
+    </svg>
+    <span>Favorites</span>
+  </a>
+  <a href="/suggestions/" class="snippets">
+    <svg viewBox="0 0 100 25" class="shape-tab">
+      <use xlink:href="#shape-tab"></use>
+    </svg>
+    <span>Suggestions</span>
+  </a>
+  <a href="/settings/" class="forums">
+    <svg viewBox="0 0 100 25" class="shape-tab">
+      <use xlink:href="#shape-tab"></use>
+    </svg>
+    <span>Settings</span>
+  </a>
+
+  <a href="/about/" class="lodge">
+    <svg viewBox="0 0 100 25" class="shape-tab-right">
+      <use xlink:href="#shape-tab-right"></use>
+    </svg>
+    <span>About TigerBites</span>
+  </a>
+
+</nav>
+    <div class="content-wrap">
+<div class="grid group video-archive-list">
+
+  <div class="grid-1-1">
+    <nav class="breadcrumbs video-nav breadcrumbs-top">
+  <a href="/">Rockefeller / Mathey</a>
+  <a href="/wilsonbutler/">Wilson / Butler</a>
+  <a href="/whitman/">Whitman</a>
+  <a href="/forbes/">Forbes</a>
+  <a href="/cjl/">Center for Jewish Life</a>
+  <a href="/gradcollege/">Graduate College</a>
+</nav>  </div>
+
+<div class="grid group">
+
+  <section class="blog-posts grid-2-3">
+     
+        <article class="module module-hotlink">
+
+          <h2 class="h4">
+              <svg viewBox="0 0 100 100" class="shape-arrow-right">
+                <use xlink:href="#shape-arrow-right"></use>
+              </svg>
+              Rocky / Mathey Menus
+          </h2>
+
+          <p>Click on the meals below to see menus</p>
+
+        </article>
+
+
+        <article class="module module-blogpost">
+	  <h2><a href="javascript:Toggle1();">Breakfast</a></h2>
+	  <div id="ToggleTarget">
+	    list some Rocky breakfast food below <br><br>
+	    <button type="button" onclick="alert('Item1 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item1<br>	    
+	    <button type="button" onclick="alert('Item1 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item1<br>
+	    <button type="button" onclick="alert('Item2 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item2<br>
+	    <button type="button" onclick="alert('Item3 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item3<br>
+	    <button type="button" onclick="alert('Item4 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item4<br>
+	    <button type="button" onclick="alert('Item5 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item5<br>
+	    <button type="button" onclick="alert('Item6 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item6<br>
+	    <button type="button" onclick="alert('Item7 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item7</div>
+        </article>
+
+
+        <article class="module module-blogpost">
+
+          <h2><a href="javascript:Toggle2();">Lunch</a></h2>
+	  <div id="ToggleTarget2">
+	    list some Rocky lunch food below <br><br>
+	    <button type="button" onclick="alert('Item1 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item1<br>
+	    <button type="button" onclick="alert('Item2 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item2<br>
+	    <button type="button" onclick="alert('Item3 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item3<br>
+	    <button type="button" onclick="alert('Item4 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item4<br>
+	    <button type="button" onclick="alert('Item5 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item5<br>
+	    <button type="button" onclick="alert('Item6 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item6<br>
+	    <button type="button" onclick="alert('Item7 was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;item7</div>
+        </article>
+
+
+        <article class="module module-blogpost">
+          <h2><a href="javascript:Toggle3();">Dinner</a></h2>
+	  <div id="ToggleTarget3">
+	    <br>
+	    {% for dhall, meal, item in menu %}
+            {% if dhall == "ROCKY" %}
+	    {% if meal == "DINNER" %}
+	    THIS IS A BUTTON THAT SAYS ROCKY AND TOGGLES OPEN THE ROCKY DINNER MENU <br>
+	    {% for i in item %}
+            <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+	    {% endfor %}
+	    {% endif %}
+	    {% endif %}
+	    {% comment %}
+	    {% if item_and_mealtime.dhall = "WILSON" %}
+	    {% if item_and_mealtime.dhall = "WHITMAN" %}
+            {% if item_and_mealtime.dhall = "FORBES" %}
+            {% if item_and_mealtime.dhall = "CJL" %}
+	    {% endif %}
+	    {% endcomment %}
+	    {% endfor %}
+	    
+        </article>
+
+      
+
+
+  </section>
+
+  <aside class="grid-1-3">
+
+ 
+  
+  <div class="loginmodule"> 
+    <p> Some cool things go here: like how you have to log in to add to your favorites and what not: we need to figure out how to display either login or logout button</p>
+    <div class="lodge-actions">
+      <a href="/accounts/login/" class="button">Log in!</a>
+      <br>
+       <a href="/accounts/logout/" class="button">Log out!</a>
+
+    </div>
+  </div>
+
+    
+  </form>
+</div>
+  </div>
+
+  </div>
+
+</aside>
+</div>
+    </div>  
+
+
+  </div>
+  <svg class="hide">
+
+  <defs>
+
+    <path id="shape-tab" d="M100,25C79.568,25,84.815,0,59.692,0H11.149C5.027,0,0,4.634,0,10.385V25"/>
+
+    <path id="shape-tab-right" d="M0,25C20.432,25,15.185,0,40.308,0h48.543C94.973,0,100,4.634,100,10.385V25"/>
+
+
+    <path id="shape-arrow-right" d="M0,49.993c0,7.387,6.007,13.394,13.396,13.394h40.691L42.898,74.407c-2.543,2.507-3.94,5.827-3.94,9.36
+    c0,3.539,1.407,6.863,3.952,9.364C45.428,95.616,48.809,97,52.402,97c3.6,0,6.978-1.384,9.516-3.891l34.159-33.623
+    c2.53-2.489,3.923-5.81,3.923-9.342v-0.307c0-3.545-1.4-6.867-3.943-9.358L61.914,6.869c-5.243-5.16-13.775-5.16-19.014,0
+    c-2.539,2.495-3.942,5.821-3.942,9.354c0,3.535,1.403,6.862,3.942,9.354L54.1,36.604H13.396C6.012,36.604,0.001,42.61,0,49.993z"/>
+
+  </defs>
+
+</svg>
+
+
+
+</body>
+
+</html>

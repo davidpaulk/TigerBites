@@ -1,0 +1,11 @@
+<html>
+<body>
+<p><i>User: </i>{{ netid }}</p>
+<p><br><i>Favorites: </i></p>
+{% for item in userFavorites.favorites.all %}
+<div>
+<p>{{ item }}</p>
+</div>
+{% endfor %}
+</body>
+</html>

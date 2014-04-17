@@ -4,11 +4,15 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', include('users.urls')),
+                       (r'^$', include('users.urls')),
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^accounts/login/$', 'django_cas.views.login'),
                        url(r'^accounts/logout/$', 'django_cas.views.logout'),
+                       url(r'^add/(?P<item_name>\w+)/$', 'add_item'),
                        url(r'^favorites/$', 'users.views.favorites'),
+                       url(r'^search/$', 'users.views.search'),
+                       url(r'^suggestions/$', 'users.views.suggestions'),
+                       #url(r'^add/$', users.views.add_item),
                        #url(r'^favorites_class_view/$', FavoritesTemplate.as_view()),
                        # david experiment
                        #(r'^users/', include('users.urls')),

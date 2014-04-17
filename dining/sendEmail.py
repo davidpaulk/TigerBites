@@ -19,7 +19,7 @@ def sendEmail(favorites):
         ## body of the email
         #Greeting = 'Hello, \n\n' #We have a good news for you!\n\n'
         Greeting = '<html><body><font face = "Lucida Sans Unicode"><h1>Hello!</h1>'
-        perfect = '<p>We have a good news!</p>'
+        perfect = '<p>We have good news!</p>'
         suggest1 = '<p>AND why not try something new?</p>'
         suggest2 = "<p>We couldn't find your favorites today,<br>BUT why not try something new?</p>"
         body1 = ''

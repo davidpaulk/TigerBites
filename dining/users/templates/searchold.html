@@ -34,31 +34,34 @@
   
 </head>
 
+ 
+
+<body class="page page-id-1283 page-parent page-template page-template-video-archive-php">
+
+    <script>
+  (function(){
+    var bsa = document.createElement('script');
+       bsa.async = true;
+       bsa.src = 'http://s3.buysellads.com/ac/bsa.js';
+    (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+  })();
+  </script>
+
   <style>
 
-.purple {
+.pink {
 
-  background:Lavender;
-}
-.gray {
-
-  background:SlateGray;
+  background:rgba(255,224,224,1);
 }
 
-</style> 
-
-<body class="page-template-page-almanac-group-php gray">
-
-
-
-
+</style>
   
 
 <body class="home"> 
   <div class="page-wrap">
     <header>
-      <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "white">Log in!</font></a><br>
-      <a href="http://www.tigerbites.org/accounts/logout"><font color = "white">Log out!</font></a></p>
+      <p align="right"><font color = "white"><a href="http://www.tigerbites.org/accounts/login">Log in!</font></a><br>
+      <font color = "white"><a href="http://www.tigerbites.org/accounts/logout">Log out!</font></a></p>
     <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo1.png"></a></center>
 </header>
 
@@ -105,15 +108,14 @@
         </div>
       </div>   
   
-  <div class="module purple">
-    <p><i>User: </i>{{ netid }}</p>
-    <p><br><i>Favorites: </i></p>
-    {% for item in userFavorites.favorites.all %}
-    <div>
-    <p>{{ item }}</p>
-    </div>
-    {% endfor %}
-
+  <div class="module pink">
+    <H4> Search </H4>
+    <p> Search dining items to add to your favorites! </p>
+    <form>
+      <input type="search">&emsp;&emsp;&emsp;
+  <button type="button" onclick="alert('Let\'s search this!')">Search!</button>
+  
+</form>
 
 
 
