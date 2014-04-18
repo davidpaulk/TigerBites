@@ -376,7 +376,11 @@ function ToggleGrad3() {
                 {% if dhall == "ROCKY" %}
           {% if meal == "BREAKFAST" %}
           {% for i in item %}
-                <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -397,7 +401,11 @@ function ToggleGrad3() {
               {% if dhall == "WILSON" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+              <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -419,7 +427,11 @@ function ToggleGrad3() {
               {% if dhall == "WHITMAN" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+              <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -441,7 +453,11 @@ function ToggleGrad3() {
               {% if dhall == "FORBES" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+              <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -462,7 +478,11 @@ function ToggleGrad3() {
               {% if dhall == "CJL" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+              <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -483,7 +503,11 @@ function ToggleGrad3() {
               {% if dhall == "GRADCOLLEGE" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+              <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -513,7 +537,11 @@ function ToggleGrad3() {
                 {% if dhall == "ROCKY" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -534,7 +562,11 @@ function ToggleGrad3() {
                 {% if dhall == "WILSON" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -555,7 +587,11 @@ function ToggleGrad3() {
                 {% if dhall == "WHITMAN" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -576,7 +612,11 @@ function ToggleGrad3() {
                 {% if dhall == "FORBES" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -597,7 +637,11 @@ function ToggleGrad3() {
                 {% if dhall == "CJL" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -618,7 +662,11 @@ function ToggleGrad3() {
                 {% if dhall == "GRADCOLLEGE" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -647,7 +695,11 @@ function ToggleGrad3() {
                   {% if dhall == "ROCKY" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                  <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -668,7 +720,11 @@ function ToggleGrad3() {
                   {% if dhall == "WILSON" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                  <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -689,7 +745,11 @@ function ToggleGrad3() {
                   {% if dhall == "WHITMAN" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                  <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -710,7 +770,11 @@ function ToggleGrad3() {
                   {% if dhall == "FORBES" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                  <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -731,7 +795,11 @@ function ToggleGrad3() {
                   {% if dhall == "CJL" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                  <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -752,7 +820,11 @@ function ToggleGrad3() {
                   {% if dhall == "GRADCOLLEGE" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <button type="button" onclick="alert('{{i.name}} was added to your favorites!')">Add</button>&emsp;&emsp;&emsp;{{i.name}}<br>
+                  <form action = "/add" method "POST">
+                  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
             {% endfor %}
             {% endif %}
             {% endif %}
