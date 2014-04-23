@@ -113,8 +113,10 @@
     <input type = "search" name = "s1"> &emsp;&emsp;&emsp;
     <input type = "submit" value = "Search!"> 
     </form>
-
-
+    {% if query %}
+    <br>
+    <p><i>You searched for: </i> &emsp;{{ query }}</p>
+    {% endif %}
 </div>
 </div>
   </div>

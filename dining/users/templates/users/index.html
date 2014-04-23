@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -367,8 +366,8 @@ function ToggleGrad3() {
 
 
         <article class="module module-blogpost">
-	  <h2><a href="javascript:Toggle1();">Breakfast</a></h2>
-	  <div id="ToggleTarget">
+      <h2><a href="javascript:Toggle1();">Breakfast</a></h2>
+        <div id="ToggleTarget">
         <ul>
         <li><a href="javascript:ToggleRocky();">Rocky / Mathey</a></li>
         <div id="ToggleRocky">
@@ -376,11 +375,10 @@ function ToggleGrad3() {
                 {% if dhall == "ROCKY" %}
           {% if meal == "BREAKFAST" %}
           {% for i in item %}
-                <form action = "/add" method "POST">
+                <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -401,11 +399,10 @@ function ToggleGrad3() {
               {% if dhall == "WILSON" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "/add" method "POST">
+              <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -427,11 +424,10 @@ function ToggleGrad3() {
               {% if dhall == "WHITMAN" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "/add" method "POST">
+              <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -453,11 +449,10 @@ function ToggleGrad3() {
               {% if dhall == "FORBES" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "/add" method "POST">
+              <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -478,11 +473,10 @@ function ToggleGrad3() {
               {% if dhall == "CJL" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "/add" method "POST">
+              <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -503,11 +497,10 @@ function ToggleGrad3() {
               {% if dhall == "GRADCOLLEGE" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "/add" method "POST">
+              <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -529,7 +522,7 @@ function ToggleGrad3() {
         <article class="module module-blogpost">
 
           <h2><a href="javascript:Toggle2();">Lunch</a></h2>
-	  <div id="ToggleTarget2">
+      <div id="ToggleTarget2">
         <ul>
         <li><a href="javascript:ToggleRocky2();">Rocky / Mathey</a></li>
         <div id="ToggleRocky2">
@@ -537,11 +530,10 @@ function ToggleGrad3() {
                 {% if dhall == "ROCKY" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "/add" method "POST">
+                <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -562,11 +554,10 @@ function ToggleGrad3() {
                 {% if dhall == "WILSON" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "/add" method "POST">
+                <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -587,11 +578,10 @@ function ToggleGrad3() {
                 {% if dhall == "WHITMAN" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "/add" method "POST">
+                <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -612,11 +602,10 @@ function ToggleGrad3() {
                 {% if dhall == "FORBES" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "/add" method "POST">
+                <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -637,11 +626,10 @@ function ToggleGrad3() {
                 {% if dhall == "CJL" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "/add" method "POST">
+                <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -662,11 +650,10 @@ function ToggleGrad3() {
                 {% if dhall == "GRADCOLLEGE" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "/add" method "POST">
+                <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -687,7 +674,7 @@ function ToggleGrad3() {
 
         <article class="module module-blogpost">
           <h2><a href="javascript:Toggle3();">Dinner</a></h2>
-	  <div id="ToggleTarget3">
+      <div id="ToggleTarget3">
           <ul>
           <li><a href="javascript:ToggleRocky3();">Rocky / Mathey</a></li>
           <div id="ToggleRocky3">
@@ -695,11 +682,10 @@ function ToggleGrad3() {
                   {% if dhall == "ROCKY" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "/add" method "POST">
+                  <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -720,11 +706,10 @@ function ToggleGrad3() {
                   {% if dhall == "WILSON" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "/add" method "POST">
+                  <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -745,11 +730,10 @@ function ToggleGrad3() {
                   {% if dhall == "WHITMAN" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "/add" method "POST">
+                  <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -770,11 +754,10 @@ function ToggleGrad3() {
                   {% if dhall == "FORBES" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "/add" method "POST">
+                  <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -795,11 +778,10 @@ function ToggleGrad3() {
                   {% if dhall == "CJL" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "/add" method "POST">
+                  <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -820,11 +802,10 @@ function ToggleGrad3() {
                   {% if dhall == "GRADCOLLEGE" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "/add" method "POST">
+                  <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
-                  <input type = "hidden" id = "addItem" value = "" />
-                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
-                &emsp;&emsp;&emsp;{{i.name}}<br>
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -864,10 +845,6 @@ function ToggleGrad3() {
     <path id="shape-tab-right" d="M0,25C20.432,25,15.185,0,40.308,0h48.543C94.973,0,100,4.634,100,10.385V25"/>
 
 
-    <path id="shape-arrow-right" d="M0,49.993c0,7.387,6.007,13.394,13.396,13.394h40.691L42.898,74.407c-2.543,2.507-3.94,5.827-3.94,9.36
-    c0,3.539,1.407,6.863,3.952,9.364C45.428,95.616,48.809,97,52.402,97c3.6,0,6.978-1.384,9.516-3.891l34.159-33.623
-    c2.53-2.489,3.923-5.81,3.923-9.342v-0.307c0-3.545-1.4-6.867-3.943-9.358L61.914,6.869c-5.243-5.16-13.775-5.16-19.014,0
-    c-2.539,2.495-3.942,5.821-3.942,9.354c0,3.535,1.403,6.862,3.942,9.354L54.1,36.604H13.396C6.012,36.604,0.001,42.61,0,49.993z"/>
 
   </defs>
 

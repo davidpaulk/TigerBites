@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from users.models import NetID
-from forms import AddForm
 import sys
 import json
 
@@ -38,41 +37,41 @@ def index(request):
         menu.append((dic['dhall'], dic['meal'], dic['menus']))
     template = loader.get_template('users/index.html')
     context = RequestContext(request, {'menu' : menu})
-    
-#    if request.method == 'POST':
- #       form = ContactForm(request.POST)
-  #      if form.is_valid:
-           # food = form.cleaned_data['addItem']
-   #         if (request.user.is_authenticated()):
-    #            food = form.cleaned_data['addItem']    
-#       else:
-       #         return HttpResponseRedirect('/accounts/login/')
+    if request.method == 'POST':
+        food = request.POST.get('addItem')
+        if request.user.is_authenticated():
+            idy = request.user.get_username()
+            person = NetID.objects.filter(netid = idy)
+            faves = list(person[0].favorites.all())
+            faves.append("you just added:")
+            faves.append(food)
+            #faves = [food]
+
+            template = loader.get_template('users/favorites.html')
+            context = RequestContext(request, {'netid': request.user.get_username(), 'f\
+avorites':faves})
+            return HttpResponse(template.render(context))
+        else:
+                  return HttpResponseRedirect('/accounts/login/')
+
     return HttpResponse(template.render(context))
     
-def add(request):
-    if request.method == 'POST':
-        form = AddForm(request.POST)
-        if form.is_valid:
-           # food = form.cleaned_data['addItem']                                
-            if request.user.is_authenticated():
-                food = form.cleaned_data['addItem']
-                netid = request.user.get_username()
-                template = loader.get_template('users/favorites.html')
-                context = RequestContext(request, {'netid': netid})
-                return HttpResponse(template.render(context))
-            else:
-                return HttpResponseRedirect('/accounts/login/')
-        else:
-            return HttpResponseRedirect('/favorites/')
-    else:
-        return HttpResponseRedirect('/suggestions/')
-    return HttpResponseRedirect('/search')
+
 
 def favorites(request):
     if request.user.is_authenticated():
-        netid = request.user.get_username()
+        idy = request.user.get_username()
+        person = NetID.objects.filter(netid = idy)
+        faves = []
+        if len(person) == 0:
+            faves = ['You don\'t have any favorites! Go find some!']          
+        if len(person) == 1:
+            person = list(person)
+            faves = person[0].favorites.all()
+        if len(person) > 1:
+            faves = [("something went wrong, cause you're in the database" + str(len(person)) + "times")]
         template = loader.get_template('users/favorites.html')
-        context = RequestContext(request, {'netid': netid})
+        context = RequestContext(request, {'netid': request.user.get_username(), 'favorites':faves})
         return HttpResponse(template.render(context))
     else:
         #return HttpRequest(urljoin(settings.CAS_SERVER_URL, 'login'))
@@ -84,6 +83,13 @@ def favorites(request):
 
 
 def search(request):
+    if 's1' in request.GET:
+        #message = 'You searched for: %r' %request.GET['s1']
+        #return HttpResponse(message)
+        query = request.GET['s1']
+        template = loader.get_template('search.html')
+        context = RequestContext(request, {'query': query})
+        return HttpResponse(template.render(context))
     return render_to_response('search.html')
 
 def suggestions(request):
