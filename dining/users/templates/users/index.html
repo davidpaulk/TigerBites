@@ -318,8 +318,11 @@ function ToggleGrad3() {
 <body class="home gray"> 
   <div class="page-wrap">
     <header>
-      <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "white">Log in!</font></a><br>
-      <a href="http://www.tigerbites.org/accounts/logout"><font color = "white">Log out!</font></a></p>
+      {% if loggedin %}
+       <p align= "right"><a href="http://www.tigerbites.org/accounts/logout"><font color = "white">Log out!</font></a></p>
+       {% else %}
+       <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "white">Log in!</font></a></p>
+       {% endif %}  
     <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo1.png"></a></center>
 </header>
 
@@ -375,10 +378,17 @@ function ToggleGrad3() {
                 {% if dhall == "ROCKY" %}
           {% if meal == "BREAKFAST" %}
           {% for i in item %}
-                <form action = "" method = "POST"> {% csrf_token %}
+	  {% if i.name in favorites %}
+	         <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
+	  {% else %}
+		  <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+	  {% endif %}
           {% endfor %}
           {% endif %}
           {% endif %}

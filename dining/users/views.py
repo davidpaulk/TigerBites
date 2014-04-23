@@ -36,7 +36,14 @@ def index(request):
     for dic in today: 
         menu.append((dic['dhall'], dic['meal'], dic['menus']))
     template = loader.get_template('users/index.html')
-    context = RequestContext(request, {'menu' : menu})
+    authenticated = request.user.is_authenticated()
+    if authenticated:
+        idy = request.user.get_username()
+        person = NetID.objects.filter(netid = idy)
+        faves = set(list(person[0].favorites.all()))
+        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves})
+    else:
+        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
     if request.method == 'POST':
         food = request.POST.get('addItem')
         if request.user.is_authenticated():
@@ -88,9 +95,15 @@ def search(request):
         #return HttpResponse(message)
         query = request.GET['s1']
         template = loader.get_template('search.html')
-        context = RequestContext(request, {'query': query})
+        authenticated = request.user.is_authenticated()
+        context = RequestContext(request, {'query': query, 'loggedin' : authenticated})
         return HttpResponse(template.render(context))
-    return render_to_response('search.html')
+    else:
+        template = loader.get_template('search.html')
+        authenticated = request.user.is_authenticated()
+        context = RequestContext(request, {'loggedin' : authenticated})
+        return HttpResponse(template.render(context))
+
 
 def suggestions(request):
     return render_to_response('suggestions.html')
