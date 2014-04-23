@@ -12,6 +12,7 @@ urlpatterns = patterns('',
                        url(r'^favorites/$', 'users.views.favorites'),
                        url(r'^search/$', 'users.views.search'),
                        url(r'^suggestions/$', 'users.views.suggestions'),
+                       url(r'^add/$', 'users.views.add'),
                        #url(r'^add/$', users.views.add_item),
                        #url(r'^favorites_class_view/$', FavoritesTemplate.as_view()),
                        # david experiment

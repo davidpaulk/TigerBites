@@ -372,32 +372,14 @@ function ToggleGrad3() {
         <ul>
         <li><a href="javascript:ToggleRocky();">Rocky / Mathey</a></li>
         <div id="ToggleRocky">
-          {% for dhall, meal, item in menu %}
-                {% if dhall == "ROCKY" %}
-          {% if meal == "BREAKFAST" %}
+
+
+
 	  <form action = '' method 'post'> {% csrf_token %}
             {{ form.as_p }}
             <input type = "submit" value "Submit" />
           </form>
 
-          {% for i in item %}
-                <form action = '' method 'post'> {% csrf_token %}
-                  {{ form.as_p }}
-                  <input type = "submit" value "Submit" />
-                </form>
-
-                
-          {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "WILSON" %}
-          {% if item_and_mealtime.dhall = "WHITMAN" %}
-                {% if item_and_mealtime.dhall = "FORBES" %}
-                {% if item_and_mealtime.dhall = "CJL" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
           <br>
         </div>
 

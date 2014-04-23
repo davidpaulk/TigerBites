@@ -375,18 +375,14 @@ function ToggleGrad3() {
           {% for dhall, meal, item in menu %}
                 {% if dhall == "ROCKY" %}
           {% if meal == "BREAKFAST" %}
-	  <form action = '' method 'post'> {% csrf_token %}
-            {{ form.as_p }}
-            <input type = "submit" value "Submit" />
-          </form>
-
           {% for i in item %}
-                <form action = '' method 'post'> {% csrf_token %}
+                <form action = "/add" method "POST"> 
                   {{ form.as_p }}
-                  <input type = "submit" value "Submit" />
-                </form>
-
-                
+		  {{ form.non_field_errors }}
+		  <input type = "submit" value = "Add">
+                  <input type = "hidden" id = "addItem" value = "" />
+                  <script> document.getElementByID('addItem').value = {{i.name}} </script>
+                &emsp;&emsp;&emsp;{{i.name}}<br>
           {% endfor %}
           {% endif %}
           {% endif %}

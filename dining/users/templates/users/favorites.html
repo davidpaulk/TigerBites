@@ -57,8 +57,7 @@
 <body class="home"> 
   <div class="page-wrap">
     <header>
-      <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "white">Log in!</font></a><br>
-      <a href="http://www.tigerbites.org/accounts/logout"><font color = "white">Log out!</font></a></p>
+      <p align="right"><a href="http://www.tigerbites.org/accounts/logout"><font color = "white">Log out!</font></a></p>
     <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo1.png"></a></center>
 </header>
 
@@ -108,7 +107,7 @@
   <div class="module purple">
     <p><i>User: </i>{{ netid }}</p>
     <p><br><i>Favorites: </i></p>
-    {% for item in userFavorites.favorites.all %}
+    {% for item in favorites %}
     <div>
     <p>{{ item }}</p>
     </div>
