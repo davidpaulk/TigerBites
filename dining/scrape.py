@@ -6,7 +6,9 @@ import os, sys, json
 from datetime import date
 from subprocess import call
 import subprocess
-import sqlite3
+import MySQLdb
+from django.db import IntegrityError
+#import sqlite3
 from match import match
 
 # function that returns menu url based on dining hall input
@@ -95,9 +97,9 @@ def getMeals(str, today):
              mealMenuList.append(dish)
           
           try:
-             with conn:
-                conn.execute(""" INSERT INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (?, ?, ?, ?, ?, ?)""", (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
-          except sqlite3.IntegrityError:
+#             with c:
+             c.execute(""" INSERT INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (%s, %s, %s, %s, %s, %s)""", (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
+          except MySQLdb.IntegrityError:
              continue
 
          # mealMenuList.append(dish)
@@ -124,7 +126,8 @@ def main():
   outfile.write('\n]\n')
 
 os.chdir("/home/ubuntu/TigerBites/dining")
-conn = sqlite3.connect('db.sqlite3')
+conn = MySQLdb.connect(user='tigerbites', db='db_mysql',passwd='princetoncos333', host='localhost')
+#conn = sqlite3.connect('db.sqlite3')
 c = conn.cursor()
 main()
 conn.commit()

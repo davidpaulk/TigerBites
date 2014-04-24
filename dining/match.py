@@ -1,4 +1,5 @@
-import sqlite3 as lite
+import MySQLdb
+#import sqlite3 as lite
 from sendEmail import sendEmail
 import sys
 import json
@@ -9,7 +10,8 @@ def match():
     favorites = dict()
 
     # connect with the database
-    con = lite.connect('db.sqlite3')
+    con = MySQLdb.connect(user='tigerbites', db='db_mysql',passwd='princetoncos333', host='localhost') 
+    #con = lite.connect('db.sqlite3')
 
     # read and evaluate today.json
     global today
@@ -46,7 +48,7 @@ def match():
                         # check to make sure potential similar item has same allergen attributes
                         if item_isVegan != food[1] or item_isVegetarian != food[2] or item_isPork != food[3] or item_hasNuts != food[4]:
                             continue
-                        similarity = Levenshtein.ratio(food[6], item)
+                        similarity = Levenshtein.ratio(food[6], item.encode('utf-8'))
                         if (len(food[6]) > len(item)):
                             ratio = float(len(item))/float(len(food[6]))
                         else:

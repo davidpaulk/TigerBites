@@ -377,6 +377,15 @@ function ToggleGrad3() {
           {% for dhall, meal, item in menu %}
                 {% if dhall == "ROCKY" %}
           {% if meal == "BREAKFAST" %}
+	  <p>favorites:</p>
+	  {% for j in favorites %}
+	  <p>{{ j }}</p>
+	  {% if 'Spaghetti' in favorites %} 
+	  <p>matched</p>
+	  {% endif %}
+	  {% endfor %}
+	  
+	  
           {% for i in item %}
 	  {% if i.name in favorites %}
 	         <form action = "" method = "POST"> {% csrf_token %}
@@ -388,6 +397,9 @@ function ToggleGrad3() {
                   <input type = "submit" value = "Add">
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+	  {% endif %}
+	  {% if i.name == "Home Fries" %}
+		  <p> matched </p>
 	  {% endif %}
           {% endfor %}
           {% endif %}

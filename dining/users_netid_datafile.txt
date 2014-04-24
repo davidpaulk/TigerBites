@@ -1,0 +1,2 @@
+INSERT INTO users_netid VALUES(1,'dpaulk');
+INSERT INTO users_netid VALUES(2,'yktwo');

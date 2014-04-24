@@ -29,7 +29,6 @@ def load_index_context(request):
 
 def index(request):
     #get today.json from parent directory
-    
     file = open('/home/ubuntu/TigerBites/dining/today.json')
     today = json.load(file)
     file.close()
@@ -41,14 +40,7 @@ def index(request):
     faves = []
     if authenticated:
         idy = request.user.get_username()
-        person = NetID.objects.filter(netid = idy)
-        if len(person) == 0:
-            faves = ['You don\'t have any favorites! Go find some!']
-        if len(person) == 1:
-            person = list(person)
-            faves = person[0].favorites.all()
-        if len(person) > 1:
-            faves = [("something went wrong, cause you're in the database" + str(len(person)) + "times")]
+        person = NetID.objects.get_or_create(netid = idy)
         context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves})
     else:
         context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
