@@ -377,30 +377,20 @@ function ToggleGrad3() {
           {% for dhall, meal, item in menu %}
                 {% if dhall == "ROCKY" %}
           {% if meal == "BREAKFAST" %}
-	  <p>favorites:</p>
-	  {% for j in favorites %}
-	  <p>{{ j }}</p>
-	  {% if 'Spaghetti' in favorites %} 
-	  <p>matched</p>
-	  {% endif %}
-	  {% endfor %}
-	  
-	  
+	    
           {% for i in item %}
-	  {% if i.name in favorites %}
-	         <form action = "" method = "POST"> {% csrf_token %}
+	    {% if i.name in favorites %}
+	           <form action = "" method = "POST"> {% csrf_token %}
                  <input type = "submit" value = "Remove">
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
-	  {% else %}
-		  <form action = "" method = "POST"> {% csrf_token %}
+		     {% else %}
+		     <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;&emsp;{{i.name}}</form>
-	  {% endif %}
-	  {% if i.name == "Home Fries" %}
-		  <p> matched </p>
-	  {% endif %}
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+		       {% endif %}
+
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -421,10 +411,17 @@ function ToggleGrad3() {
               {% if dhall == "WILSON" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "" method = "POST"> {% csrf_token %}
+                  {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -446,10 +443,17 @@ function ToggleGrad3() {
               {% if dhall == "WHITMAN" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                  {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -471,10 +475,17 @@ function ToggleGrad3() {
               {% if dhall == "FORBES" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                  {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -495,10 +506,17 @@ function ToggleGrad3() {
               {% if dhall == "CJL" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                  {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -519,10 +537,17 @@ function ToggleGrad3() {
               {% if dhall == "GRADCOLLEGE" %}
         {% if meal == "BREAKFAST" %}
         {% for i in item %}
-              <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                  {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
         {% endfor %}
         {% endif %}
         {% endif %}
@@ -552,10 +577,17 @@ function ToggleGrad3() {
                 {% if dhall == "ROCKY" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                    {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -576,10 +608,17 @@ function ToggleGrad3() {
                 {% if dhall == "WILSON" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                    {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -600,10 +639,17 @@ function ToggleGrad3() {
                 {% if dhall == "WHITMAN" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                    {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -624,10 +670,17 @@ function ToggleGrad3() {
                 {% if dhall == "FORBES" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                    {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -648,10 +701,17 @@ function ToggleGrad3() {
                 {% if dhall == "CJL" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                    {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -672,10 +732,17 @@ function ToggleGrad3() {
                 {% if dhall == "GRADCOLLEGE" %}
           {% if meal == "LUNCH" %}
           {% for i in item %}
-                <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                    {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
           {% endfor %}
           {% endif %}
           {% endif %}
@@ -704,10 +771,17 @@ function ToggleGrad3() {
                   {% if dhall == "ROCKY" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -728,10 +802,17 @@ function ToggleGrad3() {
                   {% if dhall == "WILSON" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -752,10 +833,17 @@ function ToggleGrad3() {
                   {% if dhall == "WHITMAN" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -776,10 +864,17 @@ function ToggleGrad3() {
                   {% if dhall == "FORBES" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -800,10 +895,17 @@ function ToggleGrad3() {
                   {% if dhall == "CJL" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
             {% endfor %}
             {% endif %}
             {% endif %}
@@ -824,10 +926,17 @@ function ToggleGrad3() {
                   {% if dhall == "GRADCOLLEGE" %}
             {% if meal == "DINNER" %}
             {% for i in item %}
-                  <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "Add">
-                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      {% if i.name in favorites %}
+           <form action = "" method = "POST"> {% csrf_token %}
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
+    {% else %}
+      <form action = "" method = "POST"> {% csrf_token %}
+                  <input type = "submit" value = "Add">
+                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
+    {% endif %}
             {% endfor %}
             {% endif %}
             {% endif %}

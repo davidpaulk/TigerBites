@@ -109,7 +109,10 @@
     <p><br><i>Favorites: </i></p>
     {% for item in favorites %}
     <div>
-    <p>{{ item }}</p>
+       <form action = "/favorites/" method = "POST"> {% csrf_token %} 
+                 <input type = "submit" value = "Remove">
+                 <input type = "hidden" name = "removeItem" value = '{{item}}'>
+                &emsp;&emsp;&emsp;{{item}}</form>
     </div>
     {% endfor %}
 

@@ -5,6 +5,7 @@ from users.models import NetID
 from users.models import Item
 import sys
 import json
+import string
 
 #david experiment
 from django.template.loader import get_template
@@ -29,7 +30,6 @@ def load_index_context(request):
 
 def index(request):
     #get today.json from parent directory
-    
     file = open('/home/ubuntu/TigerBites/dining/today.json')
     today = json.load(file)
     file.close()
@@ -39,47 +39,94 @@ def index(request):
     template = loader.get_template('users/index.html')
     authenticated = request.user.is_authenticated()
     faves = []
-    if authenticated:
-        idy = request.user.get_username()
-        person = NetID.objects.filter(netid = idy)
-        if len(person) == 0:
-            faves = ['You don\'t have any favorites! Go find some!']
-        if len(person) == 1:
-            person = list(person)
-            faves = person[0].favorites.all()
-        if len(person) > 1:
-            faves = [("something went wrong, cause you're in the database" + str(len(person)) + "times")]
-        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves})
-    else:
-        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
-    
+#    if authenticated:
+ #       idy = request.user.get_username()
+  #      person, isNew = NetID.objects.get_or_create(netid = idy)
+   #     if isNew:
+  #          faves = ['0']
+  #      else:
+  #          faves = person.favorites.all()
+  
+  #      faves2 = []
+  #      for i in faves:
+  #          faves2.append((i.name.encode('utf-8')))
+  #      context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2})
+  #  else:
+  #      context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
     if request.method == 'POST':
         food = request.POST.get('addItem')
+        removefood = request.POST.get('removeItem')
         if request.user.is_authenticated():
             idy = request.user.get_username()
-            item = Item.objects.filter(name = food)                                               
+            item = Item.objects.filter(name = food)
+            item2 = Item.objects.filter(name = removefood)
             person, isNew = NetID.objects.get_or_create(netid = idy)                              
-            if len(item) == 0:                                                                    
+            if len(item) == 0: 
+                if len(item2) == 0:                                                                    
                 #this shouldn't happen                                                            
-                return HttpResponse("oh noes, this item should be in the db and it isn't")        
+                    return HttpResponse("oh noes, this item should be in the db and it isn't!")        
             if len(item) == 1:                                                                    
-                for thing in items:                                                               
-                    person.favorites_set.add(thing)                                               
+                for thing in item:                                                               
+                    person.favorites.add(thing)
+            if len(item2) == 1:
+                for thing in item2:
+                    person.favorites.remove(thing)
             if len(item) > 1:                                                                     
-                #also shouldn't happen                                                            
-                return HttpResponse("oh noes, this item seems to be in the db more than once")    
+                #this also shouldn't happen                                                            
+                return HttpResponse("oh noes, this item seems to be in the db more than once!")    
             person.save()
-            template = loader.get_template('users/favorites.html')
-            #context = RequestContext(request, {'netid': request.user.get_username(), 'favorites':faves})
+            template = loader.get_template('users/index.html')
+            idy = request.user.get_username()
+            person, isNew = NetID.objects.get_or_create(netid = idy)
+            if isNew:
+                faves = ['0']
+            else:
+                faves = person.favorites.all()
+            faves2 = []
+            for i in faves:
+               faves2.append((i.name.encode('utf-8')))
+            context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2})
             return HttpResponse(template.render(context))
         else:
-                  return HttpResponseRedirect('/accounts/login/')
+            return HttpResponseRedirect('/accounts/login/')
+
+    if authenticated:
+        idy = request.user.get_username()
+        person, isNew = NetID.objects.get_or_create(netid = idy)
+        if isNew:
+            faves = ['0']
+        else:
+            faves = person.favorites.all()
+            #faves = [str(person.favorites.count())]                                                                                             
+        faves2 = []
+        for i in faves:
+            faves2.append((i.name.encode('utf-8')))
+        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2})
+    else:
+        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
 
     return HttpResponse(template.render(context))
-    
+
+
 
 
 def favorites(request):
+    if request.method == 'POST':
+        food = request.POST.get('removeItem')
+        idy = request.user.get_username()
+        item = Item.objects.filter(name = food)
+        person, isNew = NetID.objects.get_or_create(netid = idy)
+        if len(item) == 0:
+                #this shouldn't happen                                                                                                           
+            return HttpResponse("oh noes, this item should be in the db and it isn't!")
+        if len(item) == 1:
+            for thing in item:
+                person.favorites.remove(thing)
+        if len(item) > 1:
+                #this also shouldn't happen                                                                                                     
+            return HttpResponse("oh noes, this item seems to be in the db more than once!")
+        person.save()
+
     if request.user.is_authenticated():
         idy = request.user.get_username()
         person = NetID.objects.filter(netid = idy)
@@ -92,7 +139,10 @@ def favorites(request):
         if len(person) > 1:
             faves = [("something went wrong, cause you're in the database" + str(len(person)) + "times")]
         template = loader.get_template('users/favorites.html')
-        context = RequestContext(request, {'netid': request.user.get_username(), 'favorites':faves})
+        faves2 = []
+        for i in faves:
+            faves2.append((i.name.encode('utf-8')))
+        context = RequestContext(request, {'netid': request.user.get_username(), 'favorites':faves2})
         return HttpResponse(template.render(context))
     else:
         #return HttpRequest(urljoin(settings.CAS_SERVER_URL, 'login'))
