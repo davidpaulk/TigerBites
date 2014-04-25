@@ -362,7 +362,29 @@ function ToggleGrad3() {
 <div class="grid group">
 
   <section class="blog-posts grid-1-1">
-     
+    {% if loggedin %}
+
+    {% if added%}
+    <p><strong>** {{ added }} was added to your <a href = "/favorites/">favorites</a> **</strong></p>
+    {% endif %}
+    {% if removed %}
+    <p><strong>** {{ removed }} was removed from your <a href = "/favorites/">favorites</a> **</strong></p>
+    {% endif %}
+
+
+
+    {% if matches %}
+    {% for food in matches %}
+    <p>{{ food }} </p>
+    {% endfor %}
+    {% else %}
+    {% if favorites %}
+    <p>Once we figure things out, if your favorites are available today, they should be shown here!</p>
+    {% else %}
+    <p>Add items to your favorites to receive notifications!</p>
+    {% endif %}
+    {% endif %}
+    {% endif %}
 
           <p>Click on the meals below to see menus</p><br>
 
@@ -372,38 +394,32 @@ function ToggleGrad3() {
       <h2><a href="javascript:Toggle1();">Breakfast</a></h2>
         <div id="ToggleTarget">
         <ul>
-        <li><a href="javascript:ToggleRocky();">Rocky / Mathey</a></li>
-        <div id="ToggleRocky">
+       
+       
           {% for dhall, meal, item in menu %}
                 {% if dhall == "ROCKY" %}
           {% if meal == "BREAKFAST" %}
-	    
-          {% for i in item %}
-	    {% if i.name in favorites %}
-	           <form action = "" method = "POST"> {% csrf_token %}
+          <li><a href="javascript:ToggleRocky();">Rocky / Mathey</a></li>
+          <div id="ToggleRocky">
+	      {% for i in item %}
+	          {% if i.name in favorites %}
+	                 <form action = "" method = "POST"> {% csrf_token %}
                  <input type = "submit" value = "Remove">
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;{{i.name}}</form>
-		     {% else %}
-		     <form action = "" method = "POST"> {% csrf_token %}
+			      {% else %}
+			      <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "Add">
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
-		       {% endif %}
-
-          {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "WILSON" %}
-          {% if item_and_mealtime.dhall = "WHITMAN" %}
-                {% if item_and_mealtime.dhall = "FORBES" %}
-                {% if item_and_mealtime.dhall = "CJL" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
-          <br>
+			             {% endif %}
+			           {% endfor %}
+         <br>
         </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
 
       <li><a href="javascript:ToggleWilson();">Wilson / Butler</a></li>
       <div id="ToggleWilson">
@@ -423,25 +439,18 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
         {% endfor %}
-        {% endif %}
-        {% endif %}
-        {% comment %}
-        {% if item_and_mealtime.dhall = "ROCKY" %}
-        {% if item_and_mealtime.dhall = "WHITMAN" %}
-              {% if item_and_mealtime.dhall = "FORBES" %}
-              {% if item_and_mealtime.dhall = "CJL" %}
-        {% endif %}
-        {% endcomment %}
-        {% endfor %}
         <br>
       </div>
-
-
-      <li><a href="javascript:ToggleWhitman();">Whitman</a></li>
-      <div id="ToggleWhitman">
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        
+      
         {% for dhall, meal, item in menu %}
               {% if dhall == "WHITMAN" %}
         {% if meal == "BREAKFAST" %}
+        <li><a href="javascript:ToggleWhitman();">Whitman</a></li>
+      <div id="ToggleWhitman">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -455,25 +464,18 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
         {% endfor %}
-        {% endif %}
-        {% endif %}
-        {% comment %}
-        {% if item_and_mealtime.dhall = "ROCKY" %}
-        {% if item_and_mealtime.dhall = "WILSON" %}
-              {% if item_and_mealtime.dhall = "FORBES" %}
-              {% if item_and_mealtime.dhall = "CJL" %}
-        {% endif %}
-        {% endcomment %}
-        {% endfor %}
         <br>
       </div>
-
-
-      <li><a href="javascript:ToggleForbes();">Forbes</a></li>
-      <div id="ToggleForbes">
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        
+      
         {% for dhall, meal, item in menu %}
               {% if dhall == "FORBES" %}
         {% if meal == "BREAKFAST" %}
+        <li><a href="javascript:ToggleForbes();">Forbes</a></li>
+      <div id="ToggleForbes">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -487,24 +489,18 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
         {% endfor %}
-        {% endif %}
-        {% endif %}
-        {% comment %}
-        {% if item_and_mealtime.dhall = "ROCKY" %}
-        {% if item_and_mealtime.dhall = "WILSON" %}
-              {% if item_and_mealtime.dhall = "WHITMAN" %}
-              {% if item_and_mealtime.dhall = "CJL" %}
-        {% endif %}
-        {% endcomment %}
-        {% endfor %}
         <br>
       </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        
 
-      <li><a href="javascript:ToggleCJL();">Center for Jewish Life</a></li>
-      <div id="ToggleCJL">
         {% for dhall, meal, item in menu %}
               {% if dhall == "CJL" %}
         {% if meal == "BREAKFAST" %}
+      <li><a href="javascript:ToggleCJL();">Center for Jewish Life</a></li>
+      <div id="ToggleCJL">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -518,24 +514,18 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
         {% endfor %}
+      <br></div>
         {% endif %}
-        {% endif %}
-        {% comment %}
-        {% if item_and_mealtime.dhall = "ROCKY" %}
-        {% if item_and_mealtime.dhall = "WHITMAN" %}
-              {% if item_and_mealtime.dhall = "FORBES" %}
-              {% if item_and_mealtime.dhall = "WILSON" %}
-        {% endif %}
-        {% endcomment %}
+      {% endif %}
         {% endfor %}
-        <br>
-      </div>
+        
 
-      <li><a href="javascript:ToggleGrad();">Graduate College</a></li>
-      <div id="ToggleGrad">
+
         {% for dhall, meal, item in menu %}
               {% if dhall == "GRADCOLLEGE" %}
         {% if meal == "BREAKFAST" %}
+        <li><a href="javascript:ToggleGrad();">Graduate College</a></li>
+      <div id="ToggleGrad">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -549,18 +539,12 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
         {% endfor %}
-        {% endif %}
-        {% endif %}
-        {% comment %}
-        {% if item_and_mealtime.dhall = "ROCKY" %}
-        {% if item_and_mealtime.dhall = "WHITMAN" %}
-              {% if item_and_mealtime.dhall = "FORBES" %}
-              {% if item_and_mealtime.dhall = "WILSON" %}
-        {% endif %}
-        {% endcomment %}
-        {% endfor %}
         <br>
       </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        
     </ul>
 
         </article>
@@ -571,11 +555,12 @@ function ToggleGrad3() {
           <h2><a href="javascript:Toggle2();">Lunch</a></h2>
       <div id="ToggleTarget2">
         <ul>
-        <li><a href="javascript:ToggleRocky2();">Rocky / Mathey</a></li>
-        <div id="ToggleRocky2">
+        
           {% for dhall, meal, item in menu %}
                 {% if dhall == "ROCKY" %}
           {% if meal == "LUNCH" %}
+          <li><a href="javascript:ToggleRocky2();">Rocky / Mathey</a></li>
+        <div id="ToggleRocky2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -589,24 +574,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
           {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "WILSON" %}
-          {% if item_and_mealtime.dhall = "WHITMAN" %}
-                {% if item_and_mealtime.dhall = "FORBES" %}
-                {% if item_and_mealtime.dhall = "CJL" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
           <br>
         </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
 
-        <li><a href="javascript:ToggleWilson2();">Wilson / Butler</a></li>
-        <div id="ToggleWilson2">
+        
           {% for dhall, meal, item in menu %}
                 {% if dhall == "WILSON" %}
           {% if meal == "LUNCH" %}
+          <li><a href="javascript:ToggleWilson2();">Wilson / Butler</a></li>
+        <div id="ToggleWilson2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -620,24 +600,18 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
           {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "ROCKY" %}
-          {% if item_and_mealtime.dhall = "WHITMAN" %}
-                {% if item_and_mealtime.dhall = "FORBES" %}
-                {% if item_and_mealtime.dhall = "CJL" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
           <br>
         </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
 
-        <li><a href="javascript:ToggleWhitman2();">Whitman</a></li>
-        <div id="ToggleWhitman2">
           {% for dhall, meal, item in menu %}
                 {% if dhall == "WHITMAN" %}
           {% if meal == "LUNCH" %}
+          <li><a href="javascript:ToggleWhitman2();">Whitman</a></li>
+        <div id="ToggleWhitman2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -651,24 +625,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
           {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "WILSON" %}
-          {% if item_and_mealtime.dhall = "ROCKY" %}
-                {% if item_and_mealtime.dhall = "FORBES" %}
-                {% if item_and_mealtime.dhall = "CJL" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
           <br>
         </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
 
-        <li><a href="javascript:ToggleForbes2();">Forbes</a></li>
-        <div id="ToggleForbes2">
+        
           {% for dhall, meal, item in menu %}
                 {% if dhall == "FORBES" %}
           {% if meal == "LUNCH" %}
+          <li><a href="javascript:ToggleForbes2();">Forbes</a></li>
+        <div id="ToggleForbes2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -682,24 +651,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
           {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "WILSON" %}
-          {% if item_and_mealtime.dhall = "WHITMAN" %}
-                {% if item_and_mealtime.dhall = "ROCKY" %}
-                {% if item_and_mealtime.dhall = "CJL" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
           <br>
         </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
 
-        <li><a href="javascript:ToggleCJL2();">Center for Jewish Life</a></li>
-        <div id="ToggleCJL2">
+        
           {% for dhall, meal, item in menu %}
                 {% if dhall == "CJL" %}
           {% if meal == "LUNCH" %}
+          <li><a href="javascript:ToggleCJL2();">Center for Jewish Life</a></li>
+        <div id="ToggleCJL2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -713,24 +677,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
           {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "WILSON" %}
-          {% if item_and_mealtime.dhall = "WHITMAN" %}
-                {% if item_and_mealtime.dhall = "FORBES" %}
-                {% if item_and_mealtime.dhall = "ROCKY" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
           <br>
         </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
 
-        <li><a href="javascript:ToggleGrad2();">Graduate College</a></li>
-        <div id="ToggleGrad2">
+        
           {% for dhall, meal, item in menu %}
                 {% if dhall == "GRADCOLLEGE" %}
           {% if meal == "LUNCH" %}
+          <li><a href="javascript:ToggleGrad2();">Graduate College</a></li>
+        <div id="ToggleGrad2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -744,18 +703,12 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
           {% endfor %}
-          {% endif %}
-          {% endif %}
-          {% comment %}
-          {% if item_and_mealtime.dhall = "WILSON" %}
-          {% if item_and_mealtime.dhall = "WHITMAN" %}
-                {% if item_and_mealtime.dhall = "FORBES" %}
-                {% if item_and_mealtime.dhall = "CJL" %}
-          {% endif %}
-          {% endcomment %}
-          {% endfor %}
           <br>
         </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          
       </ul>
 
         </article>
@@ -765,11 +718,12 @@ function ToggleGrad3() {
           <h2><a href="javascript:Toggle3();">Dinner</a></h2>
       <div id="ToggleTarget3">
           <ul>
-          <li><a href="javascript:ToggleRocky3();">Rocky / Mathey</a></li>
-          <div id="ToggleRocky3">
+          
             {% for dhall, meal, item in menu %}
                   {% if dhall == "ROCKY" %}
             {% if meal == "DINNER" %}
+            <li><a href="javascript:ToggleRocky3();">Rocky / Mathey</a></li>
+          <div id="ToggleRocky3">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -783,24 +737,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
-            {% endif %}
-            {% endif %}
-            {% comment %}
-            {% if item_and_mealtime.dhall = "WILSON" %}
-            {% if item_and_mealtime.dhall = "WHITMAN" %}
-                  {% if item_and_mealtime.dhall = "FORBES" %}
-                  {% if item_and_mealtime.dhall = "CJL" %}
-            {% endif %}
-            {% endcomment %}
-            {% endfor %}
             <br>
           </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            
 
-          <li><a href="javascript:ToggleWilson3();">Wilson / Butler</a></li>
-          <div id="ToggleWilson3">
+          
             {% for dhall, meal, item in menu %}
                   {% if dhall == "WILSON" %}
             {% if meal == "DINNER" %}
+            <li><a href="javascript:ToggleWilson3();">Wilson / Butler</a></li>
+          <div id="ToggleWilson3">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -814,24 +763,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
-            {% endif %}
-            {% endif %}
-            {% comment %}
-            {% if item_and_mealtime.dhall = "ROCKY" %}
-            {% if item_and_mealtime.dhall = "WHITMAN" %}
-                  {% if item_and_mealtime.dhall = "FORBES" %}
-                  {% if item_and_mealtime.dhall = "CJL" %}
-            {% endif %}
-            {% endcomment %}
-            {% endfor %}
             <br>
           </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            
 
-          <li><a href="javascript:ToggleWhitman3();">Whitman</a></li>
-          <div id="ToggleWhitman3">
+          
             {% for dhall, meal, item in menu %}
                   {% if dhall == "WHITMAN" %}
             {% if meal == "DINNER" %}
+            <li><a href="javascript:ToggleWhitman3();">Whitman</a></li>
+          <div id="ToggleWhitman3">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -845,24 +789,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
-            {% endif %}
-            {% endif %}
-            {% comment %}
-            {% if item_and_mealtime.dhall = "WILSON" %}
-            {% if item_and_mealtime.dhall = "ROCKY" %}
-                  {% if item_and_mealtime.dhall = "FORBES" %}
-                  {% if item_and_mealtime.dhall = "CJL" %}
-            {% endif %}
-            {% endcomment %}
-            {% endfor %}
             <br>
           </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            
 
-          <li><a href="javascript:ToggleForbes3();">Forbes</a></li>
-          <div id="ToggleForbes3">
+          
             {% for dhall, meal, item in menu %}
                   {% if dhall == "FORBES" %}
             {% if meal == "DINNER" %}
+            <li><a href="javascript:ToggleForbes3();">Forbes</a></li>
+          <div id="ToggleForbes3">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -876,24 +815,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
-            {% endif %}
-            {% endif %}
-            {% comment %}
-            {% if item_and_mealtime.dhall = "WILSON" %}
-            {% if item_and_mealtime.dhall = "WHITMAN" %}
-                  {% if item_and_mealtime.dhall = "ROCKY" %}
-                  {% if item_and_mealtime.dhall = "CJL" %}
-            {% endif %}
-            {% endcomment %}
-            {% endfor %}
             <br>
           </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            
 
-          <li><a href="javascript:ToggleCJL3();">Center for Jewish Life</a></li>
-          <div id="ToggleCJL3">
+          
             {% for dhall, meal, item in menu %}
                   {% if dhall == "CJL" %}
             {% if meal == "DINNER" %}
+            <li><a href="javascript:ToggleCJL3();">Center for Jewish Life</a></li>
+          <div id="ToggleCJL3">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -907,24 +841,19 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
-            {% endif %}
-            {% endif %}
-            {% comment %}
-            {% if item_and_mealtime.dhall = "WILSON" %}
-            {% if item_and_mealtime.dhall = "WHITMAN" %}
-                  {% if item_and_mealtime.dhall = "FORBES" %}
-                  {% if item_and_mealtime.dhall = "ROCKY" %}
-            {% endif %}
-            {% endcomment %}
-            {% endfor %}
             <br>
           </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            
 
-          <li><a href="javascript:ToggleGrad3();">Graduate College</a></li>
-          <div id="ToggleGrad3">
+          
             {% for dhall, meal, item in menu %}
                   {% if dhall == "GRADCOLLEGE" %}
             {% if meal == "DINNER" %}
+            <li><a href="javascript:ToggleGrad3();">Graduate College</a></li>
+          <div id="ToggleGrad3">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -938,18 +867,12 @@ function ToggleGrad3() {
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
-            {% endif %}
-            {% endif %}
-            {% comment %}
-            {% if item_and_mealtime.dhall = "WILSON" %}
-            {% if item_and_mealtime.dhall = "WHITMAN" %}
-                  {% if item_and_mealtime.dhall = "FORBES" %}
-                  {% if item_and_mealtime.dhall = "CJL" %}
-            {% endif %}
-            {% endcomment %}
-            {% endfor %}
             <br>
           </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            
         </ul>
 
 

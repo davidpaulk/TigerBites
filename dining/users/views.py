@@ -39,20 +39,7 @@ def index(request):
     template = loader.get_template('users/index.html')
     authenticated = request.user.is_authenticated()
     faves = []
-#    if authenticated:
- #       idy = request.user.get_username()
-  #      person, isNew = NetID.objects.get_or_create(netid = idy)
-   #     if isNew:
-  #          faves = ['0']
-  #      else:
-  #          faves = person.favorites.all()
-  
-  #      faves2 = []
-  #      for i in faves:
-  #          faves2.append((i.name.encode('utf-8')))
-  #      context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2})
-  #  else:
-  #      context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
+
     if request.method == 'POST':
         food = request.POST.get('addItem')
         removefood = request.POST.get('removeItem')
@@ -60,7 +47,8 @@ def index(request):
             idy = request.user.get_username()
             item = Item.objects.filter(name = food)
             item2 = Item.objects.filter(name = removefood)
-            person, isNew = NetID.objects.get_or_create(netid = idy)                              
+            person, isNew = NetID.objects.get_or_create(netid = idy)
+
             if len(item) == 0: 
                 if len(item2) == 0:                                                                    
                 #this shouldn't happen                                                            
@@ -85,7 +73,7 @@ def index(request):
             faves2 = []
             for i in faves:
                faves2.append((i.name.encode('utf-8')))
-            context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2})
+            context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2, 'added' : food, 'removed' : removefood})
             return HttpResponse(template.render(context))
         else:
             return HttpResponseRedirect('/accounts/login/')
@@ -97,15 +85,17 @@ def index(request):
             faves = ['0']
         else:
             faves = person.favorites.all()
-            #faves = [str(person.favorites.count())]                                                                                             
+            #faves = [str(person.favorites.count())]
         faves2 = []
         for i in faves:
-            faves2.append((i.name.encode('utf-8')))
+            nameonly = i.name
+            faves2.append((nameonly.encode('utf-8')))
         context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2})
     else:
         context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
-
     return HttpResponse(template.render(context))
+
+
 
 
 
@@ -117,13 +107,13 @@ def favorites(request):
         item = Item.objects.filter(name = food)
         person, isNew = NetID.objects.get_or_create(netid = idy)
         if len(item) == 0:
-                #this shouldn't happen                                                                                                           
+            #this shouldn't happen
             return HttpResponse("oh noes, this item should be in the db and it isn't!")
         if len(item) == 1:
             for thing in item:
                 person.favorites.remove(thing)
         if len(item) > 1:
-                #this also shouldn't happen                                                                                                     
+            #this also shouldn't happen                                                                                   
             return HttpResponse("oh noes, this item seems to be in the db more than once!")
         person.save()
 
