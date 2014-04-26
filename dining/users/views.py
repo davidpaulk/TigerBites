@@ -15,6 +15,8 @@ from django.views.generic.base import TemplateView # a view that knows how to di
 from users.models import NetID 
 from django.shortcuts import render_to_response
 #from django.config import settings
+import Levenshtein
+import MySQLdb
 
 def load_index_context(request):
     file = open('/home/ubuntu/TigerBites/dining/today.json')
@@ -159,8 +161,73 @@ def search(request):
         query = request.GET['s1']
         template = loader.get_template('search.html')
         authenticated = request.user.is_authenticated()
-        context = RequestContext(request, {'query': query, 'loggedin' : authenticated})
+        faves2 = []
+        if authenticated:
+            idy = request.user.get_username()
+            person = NetID.objects.filter(netid = idy)
+            faves = []
+            if len(person) == 1:
+                person = list(person)
+                faves = person[0].favorites.all()
+
+            for i in faves:
+                faves2.append((i.name.encode('utf-8')))
+
+        con = MySQLdb.connect(user='tigerbites', db='db_mysql',passwd='princetoncos333', host='localhost') 
+        result = []
+        with con:
+            cur = con.cursor()
+            cur.execute("SELECT id FROM users_item WHERE name = '"+query+"'")
+            if (cur.fetchone()):
+                result.append(query)
+            cur.execute("SELECT * FROM users_item")
+            for food in cur.fetchall():
+                similarity = Levenshtein.ratio(food[6], query.encode('utf-8'))
+                if (len(food[6]) > len(query)):
+                    ratio = float(len(query))/float(len(food[6]))
+                else:
+                    ratio = float(len(food[6]))/float(len(query))
+
+                if (similarity > 0.6) and (ratio < 1.0) and (ratio > 0.5):
+                    result.append(food[6])
+
+        context = RequestContext(request, {'query': query, 'loggedin' : authenticated, 'result': result, 'favorites' : faves2})
         return HttpResponse(template.render(context))
+    elif request.method == 'POST':
+        template = loader.get_template('search.html')
+        authenticated = request.user.is_authenticated()
+        food = request.POST.get('addItem')
+        removefood = request.POST.get('removeItem')
+        query = request.POST.get('searched')
+        result = request.POST.getlist('result')
+        if request.user.is_authenticated():
+            idy = request.user.get_username()
+            item = Item.objects.filter(name = food)
+            item2 = Item.objects.filter(name = removefood)
+            person, isNew = NetID.objects.get_or_create(netid = idy)
+
+            if len(item) == 0: 
+                if len(item2) == 0:                                                                    
+                #this shouldn't happen                                                            
+                    return HttpResponse("oh noes, this item should be in the db and it isn't!")        
+            if len(item) == 1:                                                                    
+                for thing in item:                                                               
+                    person.favorites.add(thing)
+            if len(item2) == 1:
+                for thing in item2:
+                    person.favorites.remove(thing)
+            if len(item) > 1:                                                                     
+                #this also shouldn't happen                                                            
+                return HttpResponse("oh noes, this item seems to be in the db more than once!")    
+            person.save()
+                   
+            faves = person.favorites.all()
+            faves2 = []
+            for i in faves:
+               faves2.append((i.name.encode('utf-8')))
+            context = RequestContext(request, {'loggedin' : authenticated,'query': query,'result': result, 'added': food, 'removed': removefood,'favorites' : faves2})
+            return HttpResponse(template.render(context))
+
     else:
         template = loader.get_template('search.html')
         authenticated = request.user.is_authenticated()

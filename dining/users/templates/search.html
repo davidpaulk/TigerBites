@@ -104,6 +104,13 @@
       </div>   
   
   <div class="module pink">
+    {% if added%}
+    <p><strong>** {{ added }} was added to your <a href = "/favorites/">favorites</a> **</strong></p>
+    {% endif %}
+    {% if removed %}
+    <p><strong>** {{ removed }} was removed from your <a href = "/favorites/">favorites</a> **</strong></p>
+    {% endif %}
+
     <H4> Search </H4>
     <p> Search dining items to add to your favorites! </p>
 
@@ -114,13 +121,34 @@
     {% if query %}
     <br>
     <p><i>You searched for: </i> &emsp;{{ query }}</p>
+    
+    {% if result %}
+    <br>
+    {% else %}
+    <p> No result </p>
+    {% endif %}
+
+    {% for food in result %}
+    {% if food in favorites %}
+    <form action = "/search/" method = "POST"> {% csrf_token %}
+    <input type = "submit" value = "-" style = "font-family: 'Courier New', Courier, monospace">
+    <input type = "hidden" name = "removeItem" value = '{{ food }}'>
+    <input type = "hidden" name = "searched" value = '{{ query }}'>
+    {% for item in result %}
+    <input type = "hidden" name = "result" value = '{{ item }}'>
+    {% endfor %}
+    &emsp;&emsp;{{ food }}</form>
+    {% else %}
     <form action = "/search/" method = "POST"> {% csrf_token %}
     <input type = "submit" value = "+" style = "font-family: 'Courier New', Courier, monospace">
-    <input type = "hidden" name = "addItem" value = '{{ query }}'>
-    &emsp;&emsp;{{ query }}</form>
-    <input type = "submit" value = "-" style = "font-family: 'Courier New', Courier, monospace">
-    <input type = "hidden" name = "removeItem" value = '{{ query }}'>
-    &emsp;&emsp;{{ query }}</form>
+    <input type = "hidden" name = "addItem" value = '{{ food }}'>
+    <input type= "hidden" name= "searched" value= '{{ query }}'>
+    {% for item in result %}
+    <input type = "hidden" name = "result" value = '{{ item }}'>
+    {% endfor %}
+    &emsp;&emsp;{{ food }}</form>
+    {% endif %}
+    {% endfor %}
     {% endif %}
     <br>
 </div>
