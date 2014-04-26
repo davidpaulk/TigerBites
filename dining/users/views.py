@@ -177,9 +177,7 @@ def search(request):
         result = []
         with con:
             cur = con.cursor()
-            cur.execute("SELECT id FROM users_item WHERE name = '"+query+"'")
-            if (cur.fetchone()):
-                result.append(query)
+
             cur.execute("SELECT * FROM users_item")
             for food in cur.fetchall():
                 similarity = Levenshtein.ratio(food[6], query.encode('utf-8'))
@@ -187,8 +185,8 @@ def search(request):
                     ratio = float(len(query))/float(len(food[6]))
                 else:
                     ratio = float(len(food[6]))/float(len(query))
-
-                if (similarity > 0.6) and (ratio < 1.0) and (ratio > 0.5):
+                # change values to make search better
+                if (similarity > 0.6) and (ratio <= 1.0) and (ratio > 0.5):
                     result.append(food[6])
 
         context = RequestContext(request, {'query': query, 'loggedin' : authenticated, 'result': result, 'favorites' : faves2})
