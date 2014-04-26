@@ -42,7 +42,7 @@
 }
 .gray {
 
-  background:SlateGray;
+  background:White;
 }
 /*
 .main-nav a.videos svg{
@@ -57,6 +57,12 @@
   list-style-type: none;
 }
 
+
+.full{
+  height : 90vh;
+}
+
+
 </style> 
 
 <body class = "gray">
@@ -66,11 +72,11 @@
   <div class="page-wrap">
     <header>
       {% if loggedin %}
-       <p align= "right"><a href="http://www.tigerbites.org/accounts/logout"><font color = "white">Log out!</font></a></p>
+       <p align= "right"><a href="http://www.tigerbites.org/accounts/logout"><font color = "black">Log Out</font></a></p>
        {% else %}
-       <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "white">Log in!</font></a></p>
+       <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "black">Log In</font></a></p>
        {% endif %}  
-    <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo1.png"></a></center>
+    <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo13.png"></a></center>
 </header>
 
 
@@ -103,7 +109,7 @@
         </div>
       </div>   
   
-  <div class="module pink">
+  <div class="module pink full">
     {% if added%}
     <p><strong>** {{ added }} was added to your <a href = "/favorites/">favorites</a> **</strong></p>
     {% endif %}
@@ -111,13 +117,12 @@
     <p><strong>** {{ removed }} was removed from your <a href = "/favorites/">favorites</a> **</strong></p>
     {% endif %}
 
-    <H4> Search </H4>
-    <p> Search dining items to add to your favorites! </p>
+<center><p>&#8594; Search dining items to add to or remove from your <a href = "/favorites/">favorites</a>! </p>
 
     <form method="GET" action="/search">
     <input type = "search" name = "s1"> &emsp;&emsp;&emsp;
     <input type = "submit" value = "Search!"> 
-    </form>
+    </form></center>
     {% if query %}
     <br>
     <p><i>You searched for: </i> &emsp;{{ query }}</p>
@@ -165,10 +170,11 @@
   </defs>
 
 </svg>
-
+</body>
+<footer>
   
   <p><center> Contact us at: princetontigerbites@gmail.com </center></p>
 
-</body>
+</footer>
 
 </html>
