@@ -226,6 +226,8 @@ def search(request):
             context = RequestContext(request, {'loggedin' : authenticated,'query': query,'result': result, 'added': food, 'removed': removefood,'favorites' : faves2})
             return HttpResponse(template.render(context))
 
+        else:
+            return HttpResponseRedirect('/accounts/login/')
     else:
         template = loader.get_template('search.html')
         authenticated = request.user.is_authenticated()
