@@ -34,8 +34,17 @@ def index(request):
     today = json.load(file)
     file.close()
     menu = []
+    bf = False;
+    lc = False;
+    dn = False;
     for dic in today: 
         menu.append((dic['dhall'], dic['meal'], dic['menus']))
+        if dic['meal'] == 'BREAKFAST':
+            bf = True
+        elif dic['meal'] == 'LUNCH':
+            lc = True
+        elif dic['meal'] == 'DINNER':
+            dn = True
     template = loader.get_template('users/index.html')
     authenticated = request.user.is_authenticated()
     faves = []
@@ -73,7 +82,7 @@ def index(request):
             faves2 = []
             for i in faves:
                faves2.append((i.name.encode('utf-8')))
-            context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2, 'added' : food, 'removed' : removefood})
+            context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'bf': bf, 'lc': lc, 'dn' : dn, 'favorites' : faves2, 'added' : food, 'removed' : removefood})
             return HttpResponse(template.render(context))
         else:
             return HttpResponseRedirect('/accounts/login/')
@@ -90,9 +99,9 @@ def index(request):
         for i in faves:
             nameonly = i.name
             faves2.append((nameonly.encode('utf-8')))
-        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'favorites' : faves2})
+        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'bf': bf, 'lc': lc, 'dn' : dn, 'favorites' : faves2})
     else:
-        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated})
+        context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'bf': bf, 'lc': lc, 'dn' : dn,})
     return HttpResponse(template.render(context))
 
 

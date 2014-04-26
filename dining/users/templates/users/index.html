@@ -389,44 +389,37 @@ input[type=submit] {
 
           <p>&#8594; Click on the meals below to view menus</p><br>
 
-
-
+        {% if bf %}
         <article class="module module-blogpost">
       <h2><a href="javascript:Toggle1();">Breakfast</a></h2>
         <div id="ToggleTarget">
         <ul>
-       
-       
-          {% for dhall, meal, item in menu %}
-                {% if dhall == "ROCKY" %}
-          {% if meal == "BREAKFAST" %}
+            
+            {% for dhall, meal, item in menu %}
+            {% if meal == "BREAKFAST" %}
+            {% if dhall == "ROCKY" %}
           <li><a href="javascript:ToggleRocky();">Rocky / Mathey</a></li>
           <div id="ToggleRocky">
-	          {% for i in item %}
-		            {% if i.name in favorites %}
-		                   <form action = "" method = "POST"> {% csrf_token %}
+	                      {% for i in item %}
+			                          {% if i.name in favorites %}
+			                                 <form action = "" method = "POST"> {% csrf_token %}
                  <input type = "submit" value ="-">
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
-				         {% else %}
-				         <form action = "" method = "POST"> {% csrf_token %}
+							              {% else %}
+							              <form action = "" method = "POST"> {% csrf_token %}
                   <input type = "submit" value = "+">
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
-					              {% endif %}
-					            {% endfor %}
+								                           {% endif %}
+								                         {% endfor %}
          <br>
         </div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
           
-
-      <li><a href="javascript:ToggleWilson();">Wilson / Butler</a></li>
+          
+         {% elif dhall == "WILSON" %}
+	        <li><a href="javascript:ToggleWilson();">Wilson / Butler</a></li>
       <div id="ToggleWilson">
-        {% for dhall, meal, item in menu %}
-              {% if dhall == "WILSON" %}
-        {% if meal == "BREAKFAST" %}
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -442,14 +435,9 @@ input[type=submit] {
         {% endfor %}
         <br>
       </div>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
         
       
-        {% for dhall, meal, item in menu %}
-              {% if dhall == "WHITMAN" %}
-        {% if meal == "BREAKFAST" %}
+          {% elif dhall == "WHITMAN" %}
         <li><a href="javascript:ToggleWhitman();">Whitman</a></li>
       <div id="ToggleWhitman">
         {% for i in item %}
@@ -467,14 +455,9 @@ input[type=submit] {
         {% endfor %}
         <br>
       </div>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
         
       
-        {% for dhall, meal, item in menu %}
-              {% if dhall == "FORBES" %}
-        {% if meal == "BREAKFAST" %}
+        {% elif dhall == "FORBES" %}
         <li><a href="javascript:ToggleForbes();">Forbes</a></li>
       <div id="ToggleForbes">
         {% for i in item %}
@@ -492,14 +475,9 @@ input[type=submit] {
         {% endfor %}
         <br>
       </div>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
         
 
-        {% for dhall, meal, item in menu %}
-              {% if dhall == "CJL" %}
-        {% if meal == "BREAKFAST" %}
+       {% elif dhall == "CJL" %}
       <li><a href="javascript:ToggleCJL();">Center for Jewish Life</a></li>
       <div id="ToggleCJL">
         {% for i in item %}
@@ -516,15 +494,9 @@ input[type=submit] {
     {% endif %}
         {% endfor %}
       <br></div>
-        {% endif %}
-      {% endif %}
-        {% endfor %}
         
 
-
-        {% for dhall, meal, item in menu %}
-              {% if dhall == "GRADCOLLEGE" %}
-        {% if meal == "BREAKFAST" %}
+          {% elif dhall == "GRADCOLLEGE" %}
         <li><a href="javascript:ToggleGrad();">Graduate College</a></li>
       <div id="ToggleGrad">
         {% for i in item %}
@@ -542,24 +514,29 @@ input[type=submit] {
         {% endfor %}
         <br>
       </div>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
         
     </ul>
 	</div>
+       {% endif %}
+        {% endif %}
+        {% endfor %}
         </article>
-
-
+        {% endif %}
+        
+        {% if lc %}
         <article class="module module-blogpost">
-
+          {% if bf %}
           <h2><a href="javascript:Toggle2();">Lunch</a></h2>
+          {% else %}
+          <h2><a href="javascript:Toggle2();">Brunch</a></h2>
+          {% endif %}
       <div id="ToggleTarget2">
         <ul>
         
           {% for dhall, meal, item in menu %}
-                {% if dhall == "ROCKY" %}
           {% if meal == "LUNCH" %}
+          {% if dhall == "ROCKY" %}
+          
           <li><a href="javascript:ToggleRocky2();">Rocky / Mathey</a></li>
         <div id="ToggleRocky2">
           {% for i in item %}
@@ -577,15 +554,8 @@ input[type=submit] {
           {% endfor %}
           <br>
         </div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
           
-
-        
-          {% for dhall, meal, item in menu %}
-                {% if dhall == "WILSON" %}
-          {% if meal == "LUNCH" %}
+          {% elif dhall == "WILSON" %}
           <li><a href="javascript:ToggleWilson2();">Wilson / Butler</a></li>
         <div id="ToggleWilson2">
           {% for i in item %}
@@ -603,14 +573,10 @@ input[type=submit] {
           {% endfor %}
           <br>
         </div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
+
           
 
-          {% for dhall, meal, item in menu %}
-                {% if dhall == "WHITMAN" %}
-          {% if meal == "LUNCH" %}
+          {% elif dhall == "WHITMAN" %}
           <li><a href="javascript:ToggleWhitman2();">Whitman</a></li>
         <div id="ToggleWhitman2">
           {% for i in item %}
@@ -628,15 +594,10 @@ input[type=submit] {
           {% endfor %}
           <br>
         </div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
-          
 
         
-          {% for dhall, meal, item in menu %}
-                {% if dhall == "FORBES" %}
-          {% if meal == "LUNCH" %}
+
+         {% elif dhall == "FORBES" %}
           <li><a href="javascript:ToggleForbes2();">Forbes</a></li>
         <div id="ToggleForbes2">
           {% for i in item %}
@@ -654,15 +615,10 @@ input[type=submit] {
           {% endfor %}
           <br>
         </div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
           
 
         
-          {% for dhall, meal, item in menu %}
-                {% if dhall == "CJL" %}
-          {% if meal == "LUNCH" %}
+          {% elif dhall == "CJL" %}
           <li><a href="javascript:ToggleCJL2();">Center for Jewish Life</a></li>
         <div id="ToggleCJL2">
           {% for i in item %}
@@ -680,15 +636,10 @@ input[type=submit] {
           {% endfor %}
           <br>
         </div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
           
 
         
-          {% for dhall, meal, item in menu %}
-                {% if dhall == "GRADCOLLEGE" %}
-          {% if meal == "LUNCH" %}
+          {% elif dhall == "GRADCOLLEGE" %}
           <li><a href="javascript:ToggleGrad2();">Graduate College</a></li>
         <div id="ToggleGrad2">
           {% for i in item %}
@@ -706,23 +657,25 @@ input[type=submit] {
           {% endfor %}
           <br>
         </div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
           
       </ul>
 	</div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
         </article>
+          {% endif %}
 
-
+          {% if dn %}
         <article class="module module-blogpost">
           <h2><a href="javascript:Toggle3();">Dinner</a></h2>
       <div id="ToggleTarget3">
           <ul>
           
             {% for dhall, meal, item in menu %}
-                  {% if dhall == "ROCKY" %}
             {% if meal == "DINNER" %}
+
+            {% if dhall == "ROCKY" %}
             <li><a href="javascript:ToggleRocky3();">Rocky / Mathey</a></li>
           <div id="ToggleRocky3">
             {% for i in item %}
@@ -740,15 +693,9 @@ input[type=submit] {
             {% endfor %}
             <br>
           </div>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
             
 
-          
-            {% for dhall, meal, item in menu %}
-                  {% if dhall == "WILSON" %}
-            {% if meal == "DINNER" %}
+            {% elif dhall == "WILSON" %}
             <li><a href="javascript:ToggleWilson3();">Wilson / Butler</a></li>
           <div id="ToggleWilson3">
             {% for i in item %}
@@ -766,15 +713,9 @@ input[type=submit] {
             {% endfor %}
             <br>
           </div>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-            
 
-          
-            {% for dhall, meal, item in menu %}
-                  {% if dhall == "WHITMAN" %}
-            {% if meal == "DINNER" %}
+            
+            {% elif dhall == "WHITMAN" %}
             <li><a href="javascript:ToggleWhitman3();">Whitman</a></li>
           <div id="ToggleWhitman3">
             {% for i in item %}
@@ -792,15 +733,10 @@ input[type=submit] {
             {% endfor %}
             <br>
           </div>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
             
 
-          
-            {% for dhall, meal, item in menu %}
-                  {% if dhall == "FORBES" %}
-            {% if meal == "DINNER" %}
+
+            {% elif dhall == "FORBES" %}
             <li><a href="javascript:ToggleForbes3();">Forbes</a></li>
           <div id="ToggleForbes3">
             {% for i in item %}
@@ -818,15 +754,9 @@ input[type=submit] {
             {% endfor %}
             <br>
           </div>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-            
 
-          
-            {% for dhall, meal, item in menu %}
-                  {% if dhall == "CJL" %}
-            {% if meal == "DINNER" %}
+
+            {% elif dhall == "CJL" %}
             <li><a href="javascript:ToggleCJL3();">Center for Jewish Life</a></li>
           <div id="ToggleCJL3">
             {% for i in item %}
@@ -844,15 +774,10 @@ input[type=submit] {
             {% endfor %}
             <br>
           </div>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
             
 
-          
-            {% for dhall, meal, item in menu %}
-                  {% if dhall == "GRADCOLLEGE" %}
-            {% if meal == "DINNER" %}
+
+            {% elif dhall == "GRADCOLLEGE" %}
             <li><a href="javascript:ToggleGrad3();">Graduate College</a></li>
           <div id="ToggleGrad3">
             {% for i in item %}
@@ -870,16 +795,16 @@ input[type=submit] {
             {% endfor %}
             <br>
           </div>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
             
         </ul>
 
-	    </div>
+	          </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
         </article>
 
-      
+      {% endif %}
 
 
   </section>
