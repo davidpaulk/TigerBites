@@ -64,12 +64,12 @@ def index(request):
                 return HttpResponse("oh noes, this item seems to be in the db more than once!")    
             person.save()
             template = loader.get_template('users/index.html')
-            idy = request.user.get_username()
-            person, isNew = NetID.objects.get_or_create(netid = idy)
-            if isNew:
-                faves = ['0']
-            else:
-                faves = person.favorites.all()
+            #idy = request.user.get_username()
+            #person, isNew = NetID.objects.get_or_create(netid = idy)
+            #if isNew:
+            #    faves = ['0']
+            #else:
+            faves = person.favorites.all()
             faves2 = []
             for i in faves:
                faves2.append((i.name.encode('utf-8')))

@@ -36,6 +36,11 @@
 
   <style>
 
+.ctr {
+  text-align: center;
+  list-style-type: none;
+}
+
 .purple {
 
   background:Lavender;
@@ -47,11 +52,7 @@
 
 </style> 
 
-<body class="page-template-page-almanac-group-php gray">
-
-
-
-
+<body class="gray">
   
 
 <body class="home"> 
@@ -62,7 +63,7 @@
 </header>
 
 
-    <nav class="main-nav">
+    <nav class="main-nav ctr">
 
   <a href="/" class="home">
     <svg viewBox="0 0 100 25" class="shape-tab">
@@ -82,24 +83,12 @@
     </svg>
     <span>Favorites</span>
   </a>
-  <a href="/suggestions/" class="snippets">
-    <svg viewBox="0 0 100 25" class="shape-tab">
-      <use xlink:href="#shape-tab"></use>
-    </svg>
-    <span>Suggestions</span>
-  </a>
-
 
 
 </nav>
     <div class="content-wrap">
 
-
-
   <div class="grid-2-3">
-
-    
-
 
         </div>
       </div>   
@@ -110,9 +99,9 @@
     {% for item in favorites %}
     <div>
        <form action = "/favorites/" method = "POST"> {% csrf_token %} 
-                 <input type = "submit" value = "Remove">
+                 <input type = "submit" value = "-">
                  <input type = "hidden" name = "removeItem" value = '{{item}}'>
-                &emsp;&emsp;&emsp;{{item}}</form>
+                &emsp;&emsp;{{item}}</form>
     </div>
     {% endfor %}
 
@@ -120,35 +109,19 @@
 
 
 </div>
-</div>
-  </div>
 
-
-   
-
-
-  </div>
   <svg class="hide">
 
   <defs>
 
-    <path id="shape-tab" d="M100,25C79.568,25,84.815,0,59.692,0H11.149C5.027,0,0,4.634,0,10.385V25"/>
-
-    <path id="shape-tab-right" d="M0,25C20.432,25,15.185,0,40.308,0h48.543C94.973,0,100,4.634,100,10.385V25"/>
-
-   
-  
+<path id="shape-tab" d="M80,25C79.568,25,84.815,0,67,0H11.149C5.027,0,0,4.634,0,10.385V25"/>  
    
   </defs>
 
 </svg>
 
 
-
-
-
-</div>
-</noscript>
+  <p><center> Contact us at: princetontigerbites@gmail.com </center></p>
 
 </body>
 
