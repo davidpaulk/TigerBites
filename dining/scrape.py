@@ -7,8 +7,6 @@ from datetime import date
 from subprocess import call
 import subprocess
 import MySQLdb
-from django.db import IntegrityError
-#import sqlite3
 from match import match
 
 # function that returns menu url based on dining hall input
@@ -75,32 +73,37 @@ def getMeals(str, today):
 
           for isVegan in entree.find_all('vegan'):
              if (isVegan.get_text() == 'y'):
-                dish["vegan"]='true'
+                dish["vegan"]=True
              else:
-                dish["vegan"]='false'
+                dish["vegan"]=False
 
           for isVegetarian in entree.find_all('vegetarian'):
              if (isVegetarian.get_text() == 'y'):
-                dish["vegetarian"]='true'
+                dish["vegetarian"]=True
              else:
-                dish["vegetarian"]='false'
+                dish["vegetarian"]=False
           for isPork in entree.find_all('pork'):
              if (isPork.get_text() == 'y'):
-                dish["pork"]='true'
+                dish["pork"]=True
              else:
-                dish["pork"]='false'
+                dish["pork"]=False
           for hasNuts in entree.find_all('nuts'):
              if (hasNuts.get_text()=='y'):
-                dish["nuts"]='true'
+                dish["nuts"]=True
              else:
-                dish["nuts"]='false'
+                dish["nuts"]=False
              mealMenuList.append(dish)
           
-          try:
-#             with c:
-             c.execute(""" INSERT INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (%s, %s, %s, %s, %s, %s)""", (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
-          except MySQLdb.IntegrityError:
+#          try:
+#             c.execute(""" INSERT INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (%s, %s, %s, %s, %s, %s)""", (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
+#          except MySQLdb.IntegrityError:
+#             continue
+
+          c.execute(""" SELECT * FROM users_item where name = %s """,dish["name"])
+          if c.fetchall():
              continue
+          else:
+             c.execute(""" INSERT INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (%s, %s, %s, %s, %s, %s)""", (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
 
          # mealMenuList.append(dish)
           
@@ -127,9 +130,8 @@ def main():
 
 os.chdir("/home/ubuntu/TigerBites/dining")
 conn = MySQLdb.connect(user='tigerbites', db='db_mysql',passwd='princetoncos333', host='localhost')
-#conn = sqlite3.connect('db.sqlite3')
 c = conn.cursor()
 main()
 conn.commit()
 conn.close() 
-match()
+
