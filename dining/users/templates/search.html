@@ -52,15 +52,25 @@
   fill: SlateGray;
 }*/
 
+.btn {
+    font-family: "Courier New", Courier, monospace; font-weight: bold;font-size: 130%;
+    margin-bottom: 0.2em; text-align:center;
+}
+.btn:hover {
+color: White;
+background-color: SlateGray;
+}
+
+
 .ctr {
   text-align: center;
   list-style-type: none;
 }
 
-
+/*
 .full{
-  height : 90vh;
-}
+  height : 60vh;
+}*/
 
 
 </style> 
@@ -109,7 +119,7 @@
         </div>
       </div>   
   
-  <div class="module pink full">
+  <div class="module pink">
     {% if added%}
     <p><strong>** {{ added }} was added to your <a href = "/favorites/">favorites</a> **</strong></p>
     {% endif %}
@@ -136,7 +146,7 @@
     {% for food in result %}
     {% if food in favorites %}
     <form action = "/search/" method = "POST"> {% csrf_token %}
-    <input type = "submit" value = "-" style = "font-family: 'Courier New', Courier, monospace">
+    <button class = "btn" type = "submit" value = "Submit">-</button>
     <input type = "hidden" name = "removeItem" value = '{{ food }}'>
     <input type = "hidden" name = "searched" value = '{{ query }}'>
     {% for item in result %}
@@ -145,7 +155,7 @@
     &emsp;&emsp;{{ food }}</form>
     {% else %}
     <form action = "/search/" method = "POST"> {% csrf_token %}
-    <input type = "submit" value = "+" style = "font-family: 'Courier New', Courier, monospace">
+    <button class = "btn" type = "submit" value = "Submit">+</button>
     <input type = "hidden" name = "addItem" value = '{{ food }}'>
     <input type= "hidden" name= "searched" value= '{{ query }}'>
     {% for item in result %}
@@ -155,7 +165,7 @@
     {% endif %}
     {% endfor %}
     {% endif %}
-    <br>
+    <br><br><br><br><br>
 </div>
 
 

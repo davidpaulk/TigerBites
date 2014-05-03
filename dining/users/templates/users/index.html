@@ -68,6 +68,9 @@ display: none;
 #ToggleGrad3 {
   display: none;
 }
+.hr_mod {
+margin:5px;
+}
 
 .pale {
 
@@ -83,6 +86,30 @@ display: none;
   list-style-type: none;
 }
 
+.meal_spanner{
+position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 0;
+}
+.dhall_spanner{
+position:absolute;
+width:100%;
+height:100%;
+top:5;
+left:0;
+z-index:0;
+}
+.fav_spanner{
+position:relative;
+width:100%;
+height:100%;
+top:10;
+left:0;
+z-index:100;
+}
 
 </style>
 
@@ -293,8 +320,14 @@ function ToggleGrad3() {
   max-width: 100%;
   max-height: 100%;
 }
-input[type=submit] {
-    font-family: "Courier New", Courier, monospace;
+    
+.btn {
+    font-family: "Courier New", Courier, monospace; font-weight: bold;font-size: 130%;
+    margin-bottom: 0.2em; text-align:center;
+}
+.btn:hover {
+color: White;
+background-color: SlateGray;
 }
 
 
@@ -319,8 +352,6 @@ input[type=submit] {
   <![endif]-->
   
 </head>
-
- 
 
 <body class="gray"> 
   <div class="page-wrap">
@@ -374,63 +405,58 @@ input[type=submit] {
 
 
 
-    {% if matches %}
-    {% for food in matches %}
-    <p>{{ food }} </p>
+    {% for dhall, meal, item in menu %}
+    {% for i in item %}
+    {% if i.name in favorites %}
+    <strong>{{i.name}}</strong> is being served by {{dhall}} today for {{meal}} <br>
+    {% endif %}
     {% endfor %}
-    {% else %}
-    {% if favorites %}
-    <p>Once we figure things out, if your favorites are available today, they should be shown here!</p>
-    {% else %}
-    <p>Add items to your favorites to receive notifications!</p>
+    {% endfor %}
+    <br>
     {% endif %}
-    {% endif %}
-    {% endif %}
-
           <p>&#8594; Click on the meals below to view menus</p><br>
 
         {% if bf %}
         <article class="module module-blogpost">
-      <h2><a href="javascript:Toggle1();">Breakfast</a></h2>
+      <h2><a href="javascript:Toggle1();">Breakfast <span class="meal_spanner"></span></a></h2>
         <div id="ToggleTarget">
         <ul>
-            
             {% for dhall, meal, item in menu %}
             {% if meal == "BREAKFAST" %}
             {% if dhall == "ROCKY" %}
-          <li><a href="javascript:ToggleRocky();">Rocky / Mathey</a></li>
-          <div id="ToggleRocky">
-	                      {% for i in item %}
-			                          {% if i.name in favorites %}
-			                                 <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value ="-">
+          <hr class="hr_mod"><li><a href="javascript:ToggleRocky();">Rocky / Mathey<span class="dhall_spanner"></span> </a></li>
+	  <div id="ToggleRocky">
+	                          {% for i in item %}
+				                            {% if i.name in favorites %}
+				                                   <form action = "" method = "POST"> {% csrf_token %}
+                 <button class = "btn" type = "submit" value ="Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-							              {% else %}
-							              <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
+								                 {% else %}
+								                 <form action = "" method = "POST"> {% csrf_token %}
+                  <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-								                           {% endif %}
-								                         {% endfor %}
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
+										                            {% endif %}
+										                          {% endfor %}
          <br>
         </div>
           
           
          {% elif dhall == "WILSON" %}
-	        <li><a href="javascript:ToggleWilson();">Wilson / Butler</a></li>
+	          <hr class="hr_mod"><li><a href="javascript:ToggleWilson();"> Wilson / Butler <span class="dhall_spanner"></span></a></li>
       <div id="ToggleWilson">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% endif %}
         {% endfor %}
         <br>
@@ -438,19 +464,19 @@ input[type=submit] {
         
       
           {% elif dhall == "WHITMAN" %}
-        <li><a href="javascript:ToggleWhitman();">Whitman</a></li>
+        <hr class="hr_mod"><li><a href="javascript:ToggleWhitman();">Whitman<span class="dhall_spanner"></span></a></li>
       <div id="ToggleWhitman">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% endif %}
         {% endfor %}
         <br>
@@ -458,19 +484,19 @@ input[type=submit] {
         
       
         {% elif dhall == "FORBES" %}
-        <li><a href="javascript:ToggleForbes();">Forbes</a></li>
+        <hr class="hr_mod"><li><a href="javascript:ToggleForbes();">Forbes<span class="dhall_spanner"></span></a></li>
       <div id="ToggleForbes">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% endif %}
         {% endfor %}
         <br>
@@ -478,41 +504,41 @@ input[type=submit] {
         
 
        {% elif dhall == "CJL" %}
-      <li><a href="javascript:ToggleCJL();">Center for Jewish Life</a></li>
+      <hr class="hr_mod"><li><a href="javascript:ToggleCJL();">Center for Jewish Life<span class="dhall_spanner"></span></a></li>
       <div id="ToggleCJL">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% endif %}
         {% endfor %}
       <br></div>
         
 
           {% elif dhall == "GRADCOLLEGE" %}
-        <li><a href="javascript:ToggleGrad();">Graduate College</a></li>
+        <hr class="hr_mod"><li><a href="javascript:ToggleGrad();">Graduate College<span class="dhall_spanner"></span></a></li>
       <div id="ToggleGrad">
         {% for i in item %}
                   {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
+                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
     {% endif %}
         {% endfor %}
-        <br>
+        <hr class="hr_mod"><br>
       </div>
         
     </ul>
@@ -537,17 +563,17 @@ input[type=submit] {
           {% if meal == "LUNCH" %}
           {% if dhall == "ROCKY" %}
           
-          <li><a href="javascript:ToggleRocky2();">Rocky / Mathey</a></li>
+          <li><a href="javascript:ToggleRocky2();">Rocky / Mathey</a></li><hr class="hr_mod">
         <div id="ToggleRocky2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -556,17 +582,17 @@ input[type=submit] {
         </div>
           
           {% elif dhall == "WILSON" %}
-          <li><a href="javascript:ToggleWilson2();">Wilson / Butler</a></li>
+          <li><a href="javascript:ToggleWilson2();">Wilson / Butler</a></li><hr class="hr_mod">
         <div id="ToggleWilson2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -577,17 +603,17 @@ input[type=submit] {
           
 
           {% elif dhall == "WHITMAN" %}
-          <li><a href="javascript:ToggleWhitman2();">Whitman</a></li>
+          <li><a href="javascript:ToggleWhitman2();">Whitman</a></li><hr class="hr_mod">
         <div id="ToggleWhitman2">
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                 <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -603,12 +629,12 @@ input[type=submit] {
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                 <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -624,12 +650,12 @@ input[type=submit] {
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                 <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -645,12 +671,12 @@ input[type=submit] {
           {% for i in item %}
                     {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                 <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                  <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -681,12 +707,12 @@ input[type=submit] {
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -701,12 +727,12 @@ input[type=submit] {
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                 <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -721,12 +747,12 @@ input[type=submit] {
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+               <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -742,12 +768,12 @@ input[type=submit] {
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+               <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -762,12 +788,12 @@ input[type=submit] {
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                 <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -783,12 +809,12 @@ input[type=submit] {
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
-                 <input type = "submit" value = "-">
+                 <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
       <form action = "" method = "POST"> {% csrf_token %}
-                  <input type = "submit" value = "+">
+                 <button class = "btn" type = "submit" value = "Submit">+</button>
                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
@@ -798,7 +824,7 @@ input[type=submit] {
             
         </ul>
 
-	          </div>
+	            </div>
         {% endif %}
         {% endif %}
         {% endfor %}

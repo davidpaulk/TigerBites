@@ -50,8 +50,13 @@
   background:White;
 }
 
-.full{
-  height : 90vh;
+.btn {
+    font-family: "Courier New", Courier, monospace; font-weight: bold;font-size: 130%;
+    margin-bottom: 0.2em; text-align:center;
+}
+.btn:hover {
+color: White;
+background-color: SlateGray;
 }
 </style> 
 
@@ -96,18 +101,18 @@
         </div>
       </div>   
   
-  <div class="module purple full">
-    <p><i>User: </i>{{ netid }}</p>
-    <p><br><i>Favorites: </i></p>
+  <div class="module purple">
+
+
     {% for item in favorites %}
     <div>
        <form action = "/favorites/" method = "POST"> {% csrf_token %} 
-                 <input type = "submit" value = "-">
+                <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{item}}'>
                 &emsp;&emsp;{{item}}</form>
     </div>
     {% endfor %}
-
+<br><br><br><br>
 
 
 
