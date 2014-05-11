@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <head>
-
+<link rel="apple-touch-icon" href="http://www.princeton.edu/~yktwo/tblogo.png" />
 
   <meta charset="UTF-8">
 
@@ -80,12 +80,21 @@ color: #4472b9;
 
 <body class="home"> 
   <div class="page-wrap">
+
     <header>
+
+  <p style="text-align:left;">
+    <a href="http://www.tigerbites.org/about"><font color ="black">About</font></a>
+
+
+
       {% if loggedin %}
-       <p align= "right"><a href="http://www.tigerbites.org/accounts/logout"><font color = "black">Log Out</font></a></p>
+      <span style="float:right;"><a href="http://www.tigerbites.org/accounts/logout"><font color = "black">Log Out</font></a></span>
+</p>
        {% else %}
-       <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "black">Log In</font></a></p>
-       {% endif %}  
+<span style="float:right;"><a href="http://www.tigerbites.org/accounts/login"><font color = "black">Log In</font></a></span>
+</p>
+          {% endif %}  
     <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo13.png"></a></center>
 </header>
 
@@ -102,7 +111,7 @@ color: #4472b9;
     <svg viewBox="0 0 100 25" class="shape-tab">
       <use xlink:href="#shape-tab"></use>
     </svg>
-    <span>Search</span>
+    <span><font color = "black">Search</font></span>
   </a>
   <a href="/favorites/" class="almanac">
     <svg viewBox="0 0 100 25" class="shape-tab">

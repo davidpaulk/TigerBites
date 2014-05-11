@@ -16,6 +16,7 @@ class Item(models.Model):
 class NetID(models.Model):
     netid = models.CharField(max_length = 15)
     favorites = models.ManyToManyField(Item)
+#    favorites_today = models.ManyToManyField(Item)
 
     def __str__(self):
         return self.id

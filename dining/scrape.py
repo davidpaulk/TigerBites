@@ -11,7 +11,6 @@ from match import match
 
 # function that returns menu url based on dining hall input
 def getMealUrl(str):   
-
    dhallcodes = {"ROCKY":"01",
                 "WILSON":"02",
                 "FORBES":"03",
@@ -94,17 +93,12 @@ def getMeals(str, today):
                 dish["nuts"]=False
              mealMenuList.append(dish)
           
-#          try:
-#             c.execute(""" INSERT INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (%s, %s, %s, %s, %s, %s)""", (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
-#          except MySQLdb.IntegrityError:
-#             continue
 
           c.execute(""" SELECT * FROM users_item where name = %s """,dish["name"])
           if c.fetchall():
              continue
           else:
-             c.execute(""" INSERT INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (%s, %s, %s, %s, %s, %s)""", (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
-
+             c.execute(""" INSERT IGNORE INTO users_item(isVegan, isVegetarian, isPork, hasNuts, type, name) VALUES (%s, %s, %s, %s, %s, %s) """, (dish["vegan"], dish["vegetarian"],dish["pork"],dish["nuts"],dish["type"],dish["name"]))
          # mealMenuList.append(dish)
           
         meals["menus"] = mealMenuList
@@ -134,4 +128,5 @@ c = conn.cursor()
 main()
 conn.commit()
 conn.close() 
+
 

@@ -57,7 +57,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
-CAS_REDIRECT_URL = 'https://tigerbites.org'
+CAS_REDIRECT_URL = '/'
+CAS_IGNORE_REFERER = True
+CAS_LOGOUT_COMPLETELY = True
 
 ROOT_URLCONF = 'dining.urls'
 

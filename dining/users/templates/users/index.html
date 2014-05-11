@@ -4,6 +4,8 @@
 
 <head>
 
+<link rel="apple-touch-icon" href="http://www.princeton.edu/~yktwo/tblogo.png" />
+
 <style type="text/css">
 #ToggleTarget {
 display: none;
@@ -112,6 +114,8 @@ z-index:100;
 }
 
 </style>
+
+
 
 <script type="text/javascript">
 function Toggle1() {
@@ -309,11 +313,7 @@ function ToggleGrad3() {
   }
 }
 
-
-
 </script>
-
-
 
 <style>
 .fit {
@@ -329,392 +329,458 @@ function ToggleGrad3() {
 color: #4472b9;
 }
 
-
 </style>
+
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 
 <title>Tiger Bites</title>
 
 
-  <link rel="stylesheet" href="//cloud.typography.com/610186/691184/css/fonts.css">
 
-  <!--[if !IE]><!-->
-  <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v=2.3">
-  <!--<![endif]-->
-  <!--[if lt IE 9]>
-  <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/css/oldie.css">
-  <![endif]-->
-  <!--[if IE 9]>
-  <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
-  <![endif]-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
 
+<!--<link rel="stylesheet" href="//cloud.typography.com/610186/691184/css/fonts.css">-->
+<link rel="stylesheet" type="text/css" href="http://princeton.edu/~dadrados/add-to-homescreen/style/addtohomescreen.css">
+<!--<link rel="stylesheet" type="text/css" href="http://princeton.edu/~dadrados/333_css/home_style.css"> -->
+<!--[if !IE]><!-->
+<link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v=2.3">
+<!--<![endif]-->
+<!--[if lt IE 9]>
+    <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/css/oldie.css">
+    <![endif]-->
+<!--[if IE 9]>
+    <link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-11/style.css?v1.2">
+    <![endif]-->
+<style>
+h2 {font-size:300%;}
+li {font-size:150%;}
+</style>
+<script src="http://www.princeton.edu/~dadrados/add-to-homescreen/src/addtohomescreen.js"></script>
+<script>
+addToHomescreen();
+</script>
   
 </head>
 
 <body class="gray"> 
   <div class="page-wrap">
     <header>
+  <p style="text-align:left;">
+    <a href="http://www.tigerbites.org/about"><font color ="black">About</font></a>
+
+
+
       {% if loggedin %}
-       <p align= "right"><a href="http://www.tigerbites.org/accounts/logout"><font color = "black">Log Out</font></a></p>
+      <span style="float:right;"><a href="http://www.tigerbites.org/accounts/logout"><font color = "black">Log Out</font></a></span>
+</p>
        {% else %}
-       <p align="right"><a href="http://www.tigerbites.org/accounts/login"><font color = "black">Log In</font></a></p>
-       {% endif %}  
-    <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo13.png"></a></center>
-</header>
+<span style="float:right;"><a href="http://www.tigerbites.org/accounts/login"><font color = "black">Log In</font></a></span>
+</p>
 
 
+    
+      {% endif %}  
+      <center><a href="http://tigerbites.org"><img class = "fit" src = "http://www.princeton.edu/~yktwo/logo13.png"></a></center>
+    </header>
+    
+    
     <nav class="main-nav ctr">
-
-   <a href="/" class="home">
-    <svg viewBox="0 0 100 25" class="shape-tab">
-      <use xlink:href="#shape-tab"></use>
-    </svg>
-    <span>Menus</span>
-  </a>
-  <a href="/search/" class="videos">
-    <svg viewBox="0 0 100 25" class="shape-tab">
-      <use xlink:href="#shape-tab"></use>
-    </svg>
-    <span>Search</span>
-  </a>
-  <a href="/favorites/" class="almanac">
-    <svg viewBox="0 0 100 25" class="shape-tab">
-      <use xlink:href="#shape-tab"></use>
-    </svg>
-    <span>Favorites</span>
-  </a>
-
-</nav>
+      
+      <a href="/" class="home">
+	<svg viewBox="0 0 100 25" class="shape-tab">
+	  <use xlink:href="#shape-tab"></use>
+	</svg>
+	<span><font color = "black">Menus</font></span>
+      </a>
+      <a href="/search/" class="videos">
+	<svg viewBox="0 0 100 25" class="shape-tab">
+	  <use xlink:href="#shape-tab"></use>
+	</svg>
+	<span>Search</span>
+      </a>
+      <a href="/favorites/" class="almanac">
+	<svg viewBox="0 0 100 25" class="shape-tab">
+	  <use xlink:href="#shape-tab"></use>
+	</svg>
+	<span>Favorites</span>
+      </a>
+      
+    </nav>
     <div class="content-wrap">
-<div class="grid group video-archive-list pale">
-
-
-<div class="grid group">
-
-  <section class="blog-posts grid-1-1">
-    {% if loggedin %}
-
-    {% if added%}
-    <p><strong>** {{ added }} was added to your <a href = "/favorites/">favorites</a> **</strong></p>
-    {% endif %}
-    {% if removed %}
-    <p><strong>** {{ removed }} was removed from your <a href = "/favorites/">favorites</a> **</strong></p>
-    {% endif %}
-
-
-
-    {% for dhall, meal, item in menu %}
-    {% for i in item %}
-    {% if i.name in favorites %}
-    {% if meal == "LUNCH" %}
-    {% if not bf %}
-    <strong>{{i.name}}</strong> is being served by {{dhall}} today for BRUNCH <br>
-    {% endif %}
-    {% else %}
-    <strong>{{i.name}}</strong> is being served by {{dhall}} today for {{meal}} <br>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-    <br>
-    {% endif %}
-          <p>&#8594; Click on the meals below to view menus</p><br>
-
-        {% if bf %}
-        <article class="module module-blogpost">
-      <h2><a href="javascript:Toggle1();">Breakfast <span class="meal_spanner"></span></a></h2>
-        <div id="ToggleTarget">
-        <ul>
-            {% for dhall, meal, item in menu %}
-            {% if meal == "BREAKFAST" %}
-            {% if dhall == "ROCKY" %}
-          <hr class="hr_mod"><li><a href="javascript:ToggleRocky();">Rocky / Mathey<span class="dhall_spanner"></span> </a></li>
-	  <div id="ToggleRocky">
-	                          {% for i in item %}
-				                            {% if i.name in favorites %}
-				                                   <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value ="Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-								                 {% else %}
-								                 <form action = "" method = "POST"> {% csrf_token %}
+      <div class="grid group pale">
+		
+	  
+	  <section class="blog-posts grid-1-1">
+	    {% if loggedin %}
+	    
+	    {% if added%}
+	    <p><strong>** {{ added }} was added to your <a href = "/favorites/">favorites</a> **</strong></p>
+	    {% endif %}
+	    {% if removed %}
+	    <p><strong>** {{ removed }} was removed from your <a href = "/favorites/">favorites</a> **</strong></p>
+	    {% endif %}
+	    
+	    
+	    {% if matched %}
+	    <p><u>Your <a href = "/favorites/">favorite(s)</a> today:</u></p>
+	    <table border="1" >
+	    <tr>
+              <td><strong>Item</strong></td>
+	            <td><strong>Dining Hall</strong></td>
+		          <td><strong>Meal</strong></td>
+			      </tr>
+	    
+	    {% for dhall, meal, item in menu %}
+	    {% for i in item %}
+	    {% if i.name in favorites %}
+	    {% if meal == "LUNCH" %}
+	    {% if not bf %}
+	    
+	    <tr>
+	      <td>{{i.name}}</td>
+	      <td>{{dhall}}</td>
+	      <td>BRUNCH</td>
+	    </tr>
+	    
+	    {% else %}
+	    
+	    <tr>
+              <td>{{i.name}}</td>
+	            <td>{{dhall}}</td>
+		          <td>{{meal}}</td>
+			      </tr>
+	    {% endif %}
+	    {% else %}
+	    <tr>
+              <td>{{i.name}}</td>
+                    <td>{{dhall}}</td>
+                          <td>{{meal}}</td>
+                              </tr>
+	    {% endif %}
+	    {% endif %}
+	    {% endfor %}
+	    {% endfor %}
+	    {% endif %}
+	    </table>
+	    <br>
+	    {% endif %}
+            <p>&#8594; Click on the meals below to view menus for {{date}}</p><br>
+	    
+            {% if bf %}
+            <article class="module module-blogpost">
+	      <h2><a href="javascript:Toggle1();">Breakfast <span class="meal_spanner"></span></a></h2>
+              <div id="ToggleTarget">
+		<ul>
+		  {% for dhall, meal, item in menu %}
+		  {% if meal == "BREAKFAST" %}
+		  {% if dhall == "ROCKY" %}
+		  <li><a href="javascript:ToggleRocky();">Rocky / Mathey<span class="dhall_spanner"></span> </a></li>
+		  <div id="ToggleRocky"> <span class="fav_spanner">
+		      {% for i in item %}
+		   
+		      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value ="Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}
+		      </form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}
+		      </form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+		  
+		  
+		  {% elif dhall == "WILSON" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleWilson();"> Wilson / Butler <span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleWilson"><span class="fav_spanner">
+		      {% for i in item %}
+		      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}
+		      </form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}
+		      </form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+		  
+		  
+		  {% elif dhall == "WHITMAN" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleWhitman();">Whitman<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleWhitman"><span class="fav_spanner">
+		      {% for i in item %}
+		      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+		  
+		  
+		  {% elif dhall == "FORBES" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleForbes();">Forbes<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleForbes"><span class="fav_spanner">
+		      {% for i in item %}
+		      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+		  
+		  
+		  {% elif dhall == "CJL" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleCJL();">Center for Jewish Life<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleCJL"><span class="fav_spanner">
+		      {% for i in item %}
+		      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+		  
+		  
+		  {% elif dhall == "GRADCOLLEGE" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleGrad();">Graduate College<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleGrad"><span class="fav_spanner">
+		      {% for i in item %}
+		      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		    <hr class="hr_mod"><br>
+		  </div>
+		  
+		</ul>
+	      </div>
+	      {% endif %}
+	      {% endif %}
+	      {% endfor %}
+	    </article>
+	    {% endif %}
+	    
+	    {% if lc %}
+	    <article class="module module-blogpost">
+              {% if bf %}
+              <h2><a href="javascript:Toggle2();">Lunch<span class="meal_spanner"></span></a></h2>
+              {% else %}
+              <h2><a href="javascript:Toggle2();">Brunch<span class="meal_spanner"></span></a></h2>
+              {% endif %}
+	      <div id="ToggleTarget2">
+		<ul>
+		  
+		  {% for dhall, meal, item in menu %}
+		  {% if meal == "LUNCH" %}
+		  {% if dhall == "ROCKY" %}
+		  
+		  <li><a href="javascript:ToggleRocky2();">Rocky / Mathey<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleRocky2"><span class="fav_spanner">
+		    {% for i in item %}
+                    {% if i.name in favorites %}
+		    <form action = "" method = "POST"> {% csrf_token %}
+                      <button class = "btn" type = "submit" value = "Submit">-</button>
+                      <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+                      &emsp;&emsp;{{i.name}}</form>
+		    {% else %}
+		    <form action = "" method = "POST"> {% csrf_token %}
+                      <button class = "btn" type = "submit" value = "Submit">+</button>
+                      <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      &emsp;&emsp;{{i.name}}</form>
+		    {% endif %}
+		    {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+		  
+		  {% elif dhall == "WILSON" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleWilson2();">Wilson / Butler<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleWilson2"><span class="fav_spanner">
+		    {% for i in item %}
+                    {% if i.name in favorites %}
+		    <form action = "" method = "POST"> {% csrf_token %}
+                      <button class = "btn" type = "submit" value = "Submit">-</button>
+                      <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+                      &emsp;&emsp;{{i.name}}</form>
+		    {% else %}
+		    <form action = "" method = "POST"> {% csrf_token %}
+                      <button class = "btn" type = "submit" value = "Submit">+</button>
+                      <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                      &emsp;&emsp;{{i.name}}</form>
+		    {% endif %}
+		    {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+	      
+              
+	      
+              {% elif dhall == "WHITMAN" %}
+              <hr class="hr_mod"><li><a href="javascript:ToggleWhitman2();">Whitman<span class="dhall_spanner"></span></a></li>
+              <div id="ToggleWhitman2"><span class="fav_spanner">
+		{% for i in item %}
+                {% if i.name in favorites %}
+		<form action = "" method = "POST"> {% csrf_token %}
+                  <button class = "btn" type = "submit" value = "Submit">-</button>
+                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+                  &emsp;&emsp;{{i.name}}</form>
+		{% else %}
+		<form action = "" method = "POST"> {% csrf_token %}
                   <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-										                            {% endif %}
-										                          {% endfor %}
-         <br>
-        </div>
-          
-          
-         {% elif dhall == "WILSON" %}
-	          <hr class="hr_mod"><li><a href="javascript:ToggleWilson();"> Wilson / Butler <span class="dhall_spanner"></span></a></li>
-      <div id="ToggleWilson">
-        {% for i in item %}
-                  {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% endif %}
-        {% endfor %}
-        <br>
-      </div>
-        
-      
-          {% elif dhall == "WHITMAN" %}
-        <hr class="hr_mod"><li><a href="javascript:ToggleWhitman();">Whitman<span class="dhall_spanner"></span></a></li>
-      <div id="ToggleWhitman">
-        {% for i in item %}
-                  {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% endif %}
-        {% endfor %}
-        <br>
-      </div>
-        
-      
-        {% elif dhall == "FORBES" %}
-        <hr class="hr_mod"><li><a href="javascript:ToggleForbes();">Forbes<span class="dhall_spanner"></span></a></li>
-      <div id="ToggleForbes">
-        {% for i in item %}
-                  {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% endif %}
-        {% endfor %}
-        <br>
-      </div>
-        
-
-       {% elif dhall == "CJL" %}
-      <hr class="hr_mod"><li><a href="javascript:ToggleCJL();">Center for Jewish Life<span class="dhall_spanner"></span></a></li>
-      <div id="ToggleCJL">
-        {% for i in item %}
-                  {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% endif %}
-        {% endfor %}
-      <br></div>
-        
-
-          {% elif dhall == "GRADCOLLEGE" %}
-        <hr class="hr_mod"><li><a href="javascript:ToggleGrad();">Graduate College<span class="dhall_spanner"></span></a></li>
-      <div id="ToggleGrad">
-        {% for i in item %}
-                  {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}<span class="fav_spanner"</span></form>
-    {% endif %}
-        {% endfor %}
-        <hr class="hr_mod"><br>
-      </div>
-        
-    </ul>
-	</div>
-       {% endif %}
-        {% endif %}
-        {% endfor %}
-        </article>
-        {% endif %}
-        
-        {% if lc %}
-        <article class="module module-blogpost">
-          {% if bf %}
-          <h2><a href="javascript:Toggle2();">Lunch</a></h2>
-          {% else %}
-          <h2><a href="javascript:Toggle2();">Brunch</a></h2>
-          {% endif %}
-      <div id="ToggleTarget2">
-        <ul>
-        
-          {% for dhall, meal, item in menu %}
-          {% if meal == "LUNCH" %}
-          {% if dhall == "ROCKY" %}
-          
-          <li><a href="javascript:ToggleRocky2();">Rocky / Mathey</a></li><hr class="hr_mod">
-        <div id="ToggleRocky2">
-          {% for i in item %}
-                    {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% endif %}
-          {% endfor %}
-          <br>
-        </div>
-          
-          {% elif dhall == "WILSON" %}
-          <li><a href="javascript:ToggleWilson2();">Wilson / Butler</a></li><hr class="hr_mod">
-        <div id="ToggleWilson2">
-          {% for i in item %}
-                    {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% endif %}
-          {% endfor %}
-          <br>
-        </div>
-
-          
-
-          {% elif dhall == "WHITMAN" %}
-          <li><a href="javascript:ToggleWhitman2();">Whitman</a></li><hr class="hr_mod">
-        <div id="ToggleWhitman2">
-          {% for i in item %}
-                    {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% endif %}
-          {% endfor %}
-          <br>
-        </div>
-
-        
-
-         {% elif dhall == "FORBES" %}
-          <li><a href="javascript:ToggleForbes2();">Forbes</a></li>
-        <div id="ToggleForbes2">
-          {% for i in item %}
-                    {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% endif %}
-          {% endfor %}
-          <br>
-        </div>
-          
-
-        
-          {% elif dhall == "CJL" %}
-          <li><a href="javascript:ToggleCJL2();">Center for Jewish Life</a></li>
-        <div id="ToggleCJL2">
-          {% for i in item %}
-                    {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% endif %}
-          {% endfor %}
-          <br>
-        </div>
-          
-
-        
-          {% elif dhall == "GRADCOLLEGE" %}
-          <li><a href="javascript:ToggleGrad2();">Graduate College</a></li>
-        <div id="ToggleGrad2">
-          {% for i in item %}
-                    {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                 <button class = "btn" type = "submit" value = "Submit">-</button>
-                 <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% else %}
-      <form action = "" method = "POST"> {% csrf_token %}
-                  <button class = "btn" type = "submit" value = "Submit">+</button>
-                 <input type = "hidden" name = "addItem" value = '{{i.name}}'>
-                &emsp;&emsp;{{i.name}}</form>
-    {% endif %}
-          {% endfor %}
-          <br>
-        </div>
-          
-      </ul>
-	</div>
-          {% endif %}
-          {% endif %}
-          {% endfor %}
-        </article>
-          {% endif %}
-
-          {% if dn %}
-        <article class="module module-blogpost">
-          <h2><a href="javascript:Toggle3();">Dinner</a></h2>
-      <div id="ToggleTarget3">
-          <ul>
-          
-            {% for dhall, meal, item in menu %}
-            {% if meal == "DINNER" %}
-
-            {% if dhall == "ROCKY" %}
-            <li><a href="javascript:ToggleRocky3();">Rocky / Mathey</a></li>
-          <div id="ToggleRocky3">
-            {% for i in item %}
+                  <input type = "hidden" name = "addItem" value = '{{i.name}}'>
+                  &emsp;&emsp;{{i.name}}</form>
+		{% endif %}
+		{% endfor %}
+		</span>
+		<br>
+              </div>
+	      
+              
+	      
+              {% elif dhall == "FORBES" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleForbes2();">Forbes<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleForbes2"><span class="fav_spanner">
+		      {% for i in item %}
                       {% if i.name in favorites %}
-           <form action = "" method = "POST"> {% csrf_token %}
-                <button class = "btn" type = "submit" value = "Submit">-</button>
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		      <br>
+		  </div>
+          
+
+        
+		  {% elif dhall == "CJL" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleCJL2();">Center for Jewish Life<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleCJL2"><span class="fav_spanner">
+		      {% for i in item %}
+                      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% endif %}
+		      {% endfor %}
+		    </span>
+		    <br>
+		  </div>
+		  
+
+        
+		  {% elif dhall == "GRADCOLLEGE" %}
+		  <hr class="hr_mod"><li><a href="javascript:ToggleGrad2();">Graduate College<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleGrad2"><span class="fav_spanner">
+		      {% for i in item %}
+                      {% if i.name in favorites %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">-</button>
+			<input type = "hidden" name = "removeItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% else %}
+		      <form action = "" method = "POST"> {% csrf_token %}
+			<button class = "btn" type = "submit" value = "Submit">+</button>
+			<input type = "hidden" name = "addItem" value = '{{i.name}}'>
+			&emsp;&emsp;{{i.name}}</form>
+		      {% endif %}
+		      {% endfor %}
+		      </span>
+			<br>
+		  </div>
+		  
+		</ul>
+	      </div>
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+            </article>
+            {% endif %}
+	    
+            {% if dn %}
+            <article class="module module-blogpost">
+              <h2><a href="javascript:Toggle3();">Dinner<span class="meal_spanner"></span></a></h2>
+	      <div id="ToggleTarget3">
+		<ul>
+		  
+		  {% for dhall, meal, item in menu %}
+		  {% if meal == "DINNER" %}
+		  
+		  {% if dhall == "ROCKY" %}
+		  <li><a href="javascript:ToggleRocky3();">Rocky / Mathey<span class="dhall_spanner"></span></a></li>
+		  <div id="ToggleRocky3"><span class="fav_spanner">
+		    {% for i in item %}
+                    {% if i.name in favorites %}
+		    <form action = "" method = "POST"> {% csrf_token %}
+                      <button class = "btn" type = "submit" value = "Submit">-</button>
                  <input type = "hidden" name = "removeItem" value = '{{i.name}}'>
                 &emsp;&emsp;{{i.name}}</form>
     {% else %}
@@ -724,13 +790,14 @@ color: #4472b9;
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
+      </span>
             <br>
           </div>
             
 
             {% elif dhall == "WILSON" %}
-            <li><a href="javascript:ToggleWilson3();">Wilson / Butler</a></li>
-          <div id="ToggleWilson3">
+           <hr class="hr_mod"> <li><a href="javascript:ToggleWilson3();">Wilson / Butler<span class="dhall_spanner"></span></a></li>
+          <div id="ToggleWilson3"><span class="fav_spanner">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -744,13 +811,14 @@ color: #4472b9;
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
+      </span>
             <br>
           </div>
 
             
             {% elif dhall == "WHITMAN" %}
-            <li><a href="javascript:ToggleWhitman3();">Whitman</a></li>
-          <div id="ToggleWhitman3">
+            <hr class="hr_mod"><li><a href="javascript:ToggleWhitman3();">Whitman<span class="dhall_spanner"></span></a></li>
+          <div id="ToggleWhitman3"><span class="fav_spanner">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -764,14 +832,15 @@ color: #4472b9;
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
+      </span>
             <br>
           </div>
             
 
 
             {% elif dhall == "FORBES" %}
-            <li><a href="javascript:ToggleForbes3();">Forbes</a></li>
-          <div id="ToggleForbes3">
+            <hr class="hr_mod"><li><a href="javascript:ToggleForbes3();">Forbes<span class="dhall_spanner"></span></a></li>
+          <div id="ToggleForbes3"><span class="fav_spanner">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -785,13 +854,14 @@ color: #4472b9;
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
+</span>
             <br>
           </div>
 
 
             {% elif dhall == "CJL" %}
-            <li><a href="javascript:ToggleCJL3();">Center for Jewish Life</a></li>
-          <div id="ToggleCJL3">
+           <hr class="hr_mod"> <li><a href="javascript:ToggleCJL3();">Center for Jewish Life<span class="dhall_spanner"></span></a></li>
+          <div id="ToggleCJL3"><span class="fav_spanner">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -805,14 +875,15 @@ color: #4472b9;
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
-            <br>
+      </span> 
+      <br>
           </div>
             
 
 
             {% elif dhall == "GRADCOLLEGE" %}
-            <li><a href="javascript:ToggleGrad3();">Graduate College</a></li>
-          <div id="ToggleGrad3">
+           <hr class="hr_mod"> <li><a href="javascript:ToggleGrad3();">Graduate College<span class="dhall_spanner"></span></a></li>
+          <div id="ToggleGrad3"><span class="fav_spanner">
             {% for i in item %}
                       {% if i.name in favorites %}
            <form action = "" method = "POST"> {% csrf_token %}
@@ -826,6 +897,7 @@ color: #4472b9;
                 &emsp;&emsp;{{i.name}}</form>
     {% endif %}
             {% endfor %}
+</span>
             <br>
           </div>
             
@@ -859,6 +931,22 @@ color: #4472b9;
 
   <br>
   <p><center> Contact us at: princetontigerbites@gmail.com </center></p>
+
+
+<style>
+h2 a:hover, h2 a:hover span{
+color:black;
+}  
+h2 a:visited, h2 a:visited span{
+color:#4472b9;
+}
+ul li a:hover, ul li a:hover span{
+color:#4472b9;
+border-bottom-color:transparent;
+}
+
+</style>
+
 </body>
 
 </html>

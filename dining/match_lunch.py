@@ -27,7 +27,11 @@ def match():
                 for meals in dhall['menus']:
                     #print meals#['meal']#.encode('utf-8')
                     #print 'hello david!'
-                    item = meals['name']
+                    item_long = meals['name']
+                    if len(item_long) > 50:
+                        item = item_long[0:50]
+                    else: 
+                        item = item_long
                     cur = con.cursor()
                     
                     # fetch ID corresponding with the dining item
@@ -76,7 +80,7 @@ def match():
                                         matches[similarNetID][dhall['dhall']].append(similarTup)
                                     else:
                                         matches[similarNetID][dhall['dhall']] = [similarTup]
-                                        matches[similarNetID].append(similarTup)
+                                        #matches[similarNetID].append(similarTup)
                                 else:
                                     #matches[similarNetID] = [(item, dhall['dhall'], dhall['meal'], food[6])] # DHALL ORDERING CHANGE
                                     matches[similarNetID] = {dhall['dhall'] : [(item, dhall['meal'], food[6])]}

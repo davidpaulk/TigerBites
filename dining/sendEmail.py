@@ -24,7 +24,7 @@ def sendEmail(favorites):
         suggest2 = "<p>We couldn't find your favorites today,<br>BUT why not try something new?</p>"
         body1 = ''
         body2 = ''
-        signoff = '<br><p align = "right">Best,&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<br>Tiger Bites!&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p><br><p>P.S.: To see more dining options, or make suggestions, please visit <a href="http://tigerbites.org">tigerbites.org</a></p></font></body></html>'
+        signoff = '<br><p align = "right">Best,&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<br>Tiger Bites!&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p><br><p><center><font size="1">To see more dining options, or make suggestions, please visit <a href="http://tigerbites.org">tigerbites.org</a><br>To end email service, visit <a href="www.tigerbites.org/favorites>tigerbites.org/favorites</a> and remove unwanted favorited items.</p></font></body></html>'
         finishlist = "</ul>"
         ## iterate through the list of favorites available today
         #print favorites[netid]
@@ -38,9 +38,7 @@ def sendEmail(favorites):
                 if (body2 == ''):
                     body2 += '<ul>'
                 body2 += "<li>You like <big>"+exact+"</big> so we thought you might enjoy <big>"+item+"</big> which is available at <big>"+dininghall+"</big> for <big>"+when+"</big>. </li>"
-        #    print item
-        #    print dininghall
-        #    print when
+
 
         if (body1 != ''):
             if (body2 != ''):
@@ -53,4 +51,5 @@ def sendEmail(favorites):
         ## send!
         message.set_html(texttosend)
         message.set_from('Tiger Bites <princetontigerbites@gmail.com>')
-        status, msg = sg.send(message)
+        if (netid == 'yktwo'):
+            status, msg = sg.send(message)

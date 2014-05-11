@@ -1,10 +1,10 @@
 import MySQLdb
-#import sqlite3 as lite
 from sendEmail import sendEmail
 import sys
 import json
 import Levenshtein
 def match():
+
     # declare local variables
     matches = dict()
     favorites = dict()
@@ -28,6 +28,7 @@ def match():
 
 		    # fetch ID corresponding with the dining item
                     cur.execute("SELECT id FROM users_item WHERE name = '"+item+"'")
+                    print(item)
                     item_ID = cur.fetchone()
 
                     cur.execute("SELECT isVegan FROM users_item WHERE name = '"+item+"'")
@@ -45,6 +46,7 @@ def match():
                     cur.execute("SELECT * FROM users_item")
                     similarItems = []
                     for food in cur.fetchall():
+
                         # check to make sure potential similar item has same allergen attributes
                         if item_isVegan != food[1] or item_isVegetarian != food[2] or item_isPork != food[3] or item_hasNuts != food[4]:
                             continue
@@ -54,11 +56,11 @@ def match():
                         else:
                             ratio = float(len(food[6]))/float(len(item))
                         if (similarity > 0.8) and (ratio < 1.0) and (ratio > 0.5):
-                            #print item + " and " + food[6] + " are similar."
                             cur.execute("SELECT id FROM users_item WHERE name = '"+food[6]+"'")
                             similarItem_ID = cur.fetchone()
                             cur.execute("SELECT netid_id FROM users_netid_favorites WHERE item_id = '"+ str(similarItem_ID[0])+ "'")
                             for similarNetID_ID in cur.fetchall():
+                                
                                 # fetch the netid corresponding with the netID ID                                       
                                 cur.execute("SELECT netid FROM users_netid WHERE id = '" + str(similarNetID_ID[0])+"'")
                                 similarNetID = cur.fetchone()[0]
@@ -72,7 +74,6 @@ def match():
                                     
 		    # fetch netID IDs corresponding with IDs previously fetched
 		    cur.execute("SELECT netid_id FROM users_netid_favorites WHERE item_id = '"+ str(item_ID[0])+ "'")
-		    #netID_ID = cur.fetchone() # fetch all?
                     for netID_ID in cur.fetchall():
 
                         # fetch the netid corresponding with the netID ID
