@@ -18,18 +18,8 @@ from django.shortcuts import render_to_response
 import Levenshtein
 import MySQLdb
 
-def load_index_context(request):
-    file = open('/home/ubuntu/TigerBites/dining/today.json')
-    today = json.load(file)
-    file.close()
-    menu = []
-    for dic in today:
-        menu.append((dic['dhall'], dic['meal'], dic['menus']))
-    template = loader.get_template('users/index.html')
-    context = RequestContext(request, {'menu' : menu})
-    return context
 
-
+#Render the response for /
 def index(request):
     #get today.json from parent directory
     file = open('/home/ubuntu/TigerBites/dining/today.json')
@@ -120,11 +110,7 @@ def index(request):
         context = RequestContext(request, {'menu' : menu, 'loggedin' : authenticated, 'bf': bf, 'lc': lc, 'dn' : dn,'date':date})
     return HttpResponse(template.render(context))
 
-
-
-
-
-
+#Render the response for /favorites/
 def favorites(request):
     if request.method == 'POST':
         food = request.POST.get('removeItem')
@@ -139,7 +125,7 @@ def favorites(request):
                 person.favorites.remove(thing)
         if len(item) > 1:
             #this also shouldn't happen                                                                                   
-            return HttpResponse("oh noes, this item seems to be in the db more than once!")
+            return HttpResponse("oh noes, this item seems to be in the db more than once! Please email us at 'princetontigerbites@gmail.com'")
         person.save()
 
     if request.user.is_authenticated():
@@ -147,7 +133,7 @@ def favorites(request):
         person = NetID.objects.filter(netid = idy)
         faves = []
         if len(person) == 0:
-            faves = ['You don\'t have any favorites! Go find some!']          
+            faves = [('You don\'t have any favorites! Go find some!')]          
         if len(person) == 1:
             person = list(person)
             faves = person[0].favorites.all()
@@ -164,13 +150,12 @@ def favorites(request):
 
 
 
-
+#Render the response for /search
 def search(request):
 
     if 's1' in request.GET:
-
         query = request.GET['s1']
-        template = loader.get_template('search.html')
+        template = loader.get_template('users/search.html')
         authenticated = request.user.is_authenticated()
         faves2 = []
         if authenticated:
@@ -206,7 +191,7 @@ def search(request):
         context = RequestContext(request, {'query': query, 'loggedin' : authenticated, 'result': result, 'favorites' : faves2})
         return HttpResponse(template.render(context))
     elif request.method == 'POST':
-        template = loader.get_template('search.html')
+        template = loader.get_template('users/search.html')
         authenticated = request.user.is_authenticated()
         food = request.POST.get('addItem')
         removefood = request.POST.get('removeItem')
@@ -243,12 +228,13 @@ def search(request):
         else:
             return HttpResponseRedirect('/accounts/login/')
     else:
-        template = loader.get_template('search.html')
+        template = loader.get_template('users/search.html')
         authenticated = request.user.is_authenticated()
         context = RequestContext(request, {'loggedin' : authenticated})
         return HttpResponse(template.render(context))
 
 
+#Render /about
 def about(request):
     return render_to_response('users/about.html')
 

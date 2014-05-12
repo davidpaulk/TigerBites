@@ -7,7 +7,7 @@ from datetime import date
 from subprocess import call
 import subprocess
 import MySQLdb
-from match import match
+#from match import match
 
 # function that returns menu url based on dining hall input
 def getMealUrl(str):   
